@@ -217,7 +217,7 @@ def make_connection(a_device):
         main_logger.info(Va)
         main_logger.info("Not able to enter Versa Director CLI. please Check")
         exit()
-    net_connect.enable()
+    #net_connect.enable()
     time.sleep(5)
     main_logger.info("{}: {}".format(net_connect.device_type, net_connect.find_prompt()))
     curr_prompt = net_connect.find_prompt()
@@ -322,7 +322,7 @@ def file_upload(source_file, dest_ip):
         # source_file_detail_list = source_file_detail.split(" ")
         # main_logger.info("File size is " + source_file_detail_list[6])
         # file_size = source_file_detail_list[6]
-        file_size = re.search("admin versa (\S+) ", source_file_detail).group(1)
+        file_size = re.search(vd_dict['ldap_user'] + " versa (\S+) ", source_file_detail).group(1)
     time.sleep(1)
     try:
         cmd = "rsync -v " + source_file + " " + vd_dict['cpe_user'] + "@" + dest_ip + ":/home/versa/packages --progress"
@@ -407,7 +407,7 @@ def sec_pkg_execute(netconnect, filename):
     if "No such file or directory" in dest_file_detail:
         return dest_file_detail
     else:
-        dest_file_size = re.search("admin versa (\S+) ", dest_file_detail).group(1)
+        dest_file_size = re.search(vd_dict['cpe_user'] + " versa (\S+) ", dest_file_detail).group(1)
         cpe_logger.info("destination file size: " + dest_file_size)
     time.sleep(1)
     if file_size != dest_file_size:
