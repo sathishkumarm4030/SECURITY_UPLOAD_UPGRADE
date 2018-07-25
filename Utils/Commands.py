@@ -361,7 +361,7 @@ def file_upload(source_file, dest_ip):
             return File_tr_Failed + str(sshexc)
     elif 'yes' in output1:
         try:
-            print "am in yes condition"
+            #print "am in yes condition"
             netconnect.write_channel("yes\n")
             time.sleep(5)
             output3 = netconnect.read_until_prompt_or_pattern(pattern='password:')
@@ -507,7 +507,7 @@ def package_upload_to_devices():
 def DO_File_Transfer():
     global source_file, result_list
     time.sleep(1)
-    source_file = raw_input("Enter File name to transfer VersaDirector to Devices.(file should be in VD's path /home/admin):\n")
+    source_file = raw_input("Enter File name to transfer VersaDirector to Devices.(file should be in VD's path /home/" + vd_dict['ldap_user'] + "):\n")
     global cpe_list, batch
     build_csv(get_device_list())
     raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
