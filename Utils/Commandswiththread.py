@@ -17,6 +17,7 @@ import netmiko
 import paramiko
 import socket
 import re
+import thread
 
 
 urllib3.disable_warnings()
@@ -478,7 +479,7 @@ def sec_pkg_execute(netconnect, filename):
 
 def package_upload_to_devices():
     global File_tr_Success, File_tr_Failed, upload_report, result_list
-    global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file
+    global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file, device_report
     cpe_list_print()
     time.sleep(2)
     device_report = {}
@@ -489,34 +490,72 @@ def package_upload_to_devices():
         device_report[cpe_name] = [cpe_name, source_file, result]
         if File_tr_Failed in result:
             cpe_list = cpe_list.drop(index=i)
-    for i, rows in cpe_list.iterrows():
-        cpe_name = cpe_list.ix[i, 'device_name_in_vd']
-        cpe_ip = cpe_list.ix[i, 'ip']
-        cpe_logger = setup_logger(cpe_name, cpe_name)
-        cpe_logger_dict[cpe_name] = cpe_logger
-        dev_dict = {
-            "device_type": 'linux', "ip": cpe_ip, \
-            "username": vd_dict['cpe_user'], "password": vd_dict['cpe_passwd'], \
-            "port": '22'
-        }
-        netconnect = do_cross_connection(vd_ssh_dict, dev_dict)
-        if netconnect == "VD to CPE " + dev_dict["ip"] + "ssh Failed.":
-            device_report[cpe_name] += ["VD -> CPE " + dev_dict["ip"] + " SSH connection failed"]
-            cpe_list = cpe_list.drop(index=i)
-            cpe_logger.info(cpe_name + " : VD -> CPE " + dev_dict[
-                "ip"] + " SSH connection failed. please check IP & reachabilty from VD")
-            continue
-        if netconnect == "Redispatch not Success":
-            device_report[cpe_name] += ["CPE Redispatch failed"]
-            cpe_list = cpe_list.drop(index=i)
-            cpe_logger.info(cpe_name + " : CPE Redispatch Success")
-            continue
-        sec_result = sec_pkg_execute(netconnect, source_file)
-        #close_cross_connection(netconnect)
-        close_connection(netconnect)
-        device_report[cpe_name] += [sec_result]
+    # for i, rows in cpe_list.iterrows():
+    try:
+        for i, rows in cpe_list.iterrows():
+            thread.start_new_thread(run_in_thread, (i, ))
+            print " starting thread for " + str(i)
+            time.sleep(5)
+    except:
+        print " Error: unable to start "
+        # cpe_name = cpe_list.ix[i, 'device_name_in_vd']
+        # cpe_ip = cpe_list.ix[i, 'ip']
+        # cpe_logger = setup_logger(cpe_name, cpe_name)
+        # cpe_logger_dict[cpe_name] = cpe_logger
+        # dev_dict = {
+        #     "device_type": 'linux', "ip": cpe_ip, \
+        #     "username": vd_dict['cpe_user'], "password": vd_dict['cpe_passwd'], \
+        #     "port": '22'
+        # }
+        # netconnect = do_cross_connection(vd_ssh_dict, dev_dict)
+        # if netconnect == "VD to CPE " + dev_dict["ip"] + "ssh Failed.":
+        #     device_report[cpe_name] += ["VD -> CPE " + dev_dict["ip"] + " SSH connection failed"]
+        #     cpe_list = cpe_list.drop(index=i)
+        #     cpe_logger.info(cpe_name + " : VD -> CPE " + dev_dict[
+        #         "ip"] + " SSH connection failed. please check IP & reachabilty from VD")
+        #     continue
+        # if netconnect == "Redispatch not Success":
+        #     device_report[cpe_name] += ["CPE Redispatch failed"]
+        #     cpe_list = cpe_list.drop(index=i)
+        #     cpe_logger.info(cpe_name + " : CPE Redispatch Success")
+        #     continue
+        # sec_result = sec_pkg_execute(netconnect, source_file)
+        # #close_cross_connection(netconnect)
+        # close_connection(netconnect)
+        # device_report[cpe_name] += [sec_result]
+    while 1:
+        pass
     for dev_key in device_report:
         result_list.append(device_report[dev_key])
+
+
+def run_in_thread(i):
+    global File_tr_Success, File_tr_Failed, upload_report, result_list
+    global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file, device_report
+    cpe_name = cpe_list.ix[i, 'device_name_in_vd']
+    cpe_ip = cpe_list.ix[i, 'ip']
+    cpe_logger = setup_logger(cpe_name, cpe_name)
+    cpe_logger_dict[cpe_name] = cpe_logger
+    dev_dict = {
+        "device_type": 'linux', "ip": cpe_ip, \
+        "username": vd_dict['cpe_user'], "password": vd_dict['cpe_passwd'], \
+        "port": '22'
+    }
+    netconnect = do_cross_connection(vd_ssh_dict, dev_dict)
+    if netconnect == "VD to CPE " + dev_dict["ip"] + "ssh Failed.":
+        device_report[cpe_name] += ["VD -> CPE " + dev_dict["ip"] + " SSH connection failed"]
+        cpe_list = cpe_list.drop(index=i)
+        cpe_logger.info(cpe_name + " : VD -> CPE " + dev_dict["ip"] + " SSH connection failed. please check IP & reachabilty from VD")
+        return
+    if netconnect == "Redispatch not Success":
+        device_report[cpe_name] += ["CPE Redispatch failed"]
+        cpe_list = cpe_list.drop(index=i)
+        cpe_logger.info(cpe_name + " : CPE Redispatch Success")
+        return
+    sec_result = sec_pkg_execute(netconnect, source_file)
+    # close_cross_connection(netconnect)
+    close_connection(netconnect)
+    device_report[cpe_name] += [sec_result]
 
 
 def DO_File_Transfer():
@@ -528,17 +567,15 @@ def DO_File_Transfer():
     raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
     csv_data_read = pd.read_csv(cpe_list_file_name)
     batches = max(csv_data_read['batch'])
-    batches_list = csv_data_read['batch'].drop_duplicates().sort_values().values
-    main_logger.info("total batches : " +  str(csv_data_read['batch'].drop_duplicates().count()))
-    main_logger.info("batch List : " + str(batches_list))
+    main_logger.info("total batches : " +  str(batches))
     # batches = csv_data_read['batch'].values.max
     # cpe_list = read_csv_file(cpe_list_file_name, 'CPE-27')
-    # for singlebatch in range(1, batches+1):
-    for singlebatch in batches_list:
+    for singlebatch in range(1, batches+1):
         cpe_list = read_csv_file(cpe_list_file_name, day, singlebatch)
-        main_logger.info("DAY :" + str(day))
-        main_logger.info("Batch : " + str(singlebatch))
-        package_upload_to_devices()
+        if cpe_list is not "":
+            main_logger.info("DAY :" + str(day))
+            main_logger.info("Batch : " + str(singlebatch))
+            package_upload_to_devices()
     write_result(result_list)
 
 
