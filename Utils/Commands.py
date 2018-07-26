@@ -37,6 +37,7 @@ source_file = ""
 upload_report = []
 result_list = []
 
+
 ssh_exceptions = (netmiko.ssh_exception.NetMikoAuthenticationException,
                   netmiko.ssh_exception.NetMikoTimeoutException, netmiko.NetMikoTimeoutException,
                   netmiko.NetMikoAuthenticationException, netmiko.NetmikoTimeoutError, netmiko.NetmikoAuthError,
@@ -82,7 +83,7 @@ def do_cross_connection(vd_ssh_dict, dev_dict):
     global cpe_logger
     netconnect = make_connection(vd_ssh_dict)
     netconnect.write_channel("ssh " + dev_dict["username"] + "@" + dev_dict["ip"] + "\n")
-    time.sleep(5)
+    time.sleep(2)
     output = netconnect.read_channel()
     main_logger.info(output)
     if 'assword:' in output:
@@ -218,7 +219,7 @@ def make_connection(a_device):
         main_logger.info("Not able to enter Versa Director CLI. please Check")
         exit()
     #net_connect.enable()
-    time.sleep(5)
+    time.sleep(2)
     main_logger.info("{}: {}".format(net_connect.device_type, net_connect.find_prompt()))
     curr_prompt = net_connect.find_prompt()
     # print str(net_connect) + " connection opened"
@@ -231,7 +232,7 @@ def close_cross_connection(nc):
     main_logger.info(nc.write_channel("exit\n"))
     time.sleep(1)
     redispatch(nc, device_type='linux')
-    main_logger.info(nc.find_prompt())
+    # main_logger.info(nc.find_prompt())
 
 
 
@@ -306,7 +307,7 @@ def get_device_list():
 
 
 def file_upload(source_file, dest_ip):
-    global File_tr_Success, File_tr_Failed, file_size
+    global File_tr_Success, File_tr_Failed, file_size, source_md5_checksum
     File_tr_Success = "File Transfer Success : "
     File_tr_Failed = "File Transfer Failed : "
 
@@ -314,6 +315,7 @@ def file_upload(source_file, dest_ip):
     source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, strip_prompt=False, strip_command=False)
     # source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file)
     main_logger.info(source_file_detail)
+
 
     if "No such file or directory" in source_file_detail:
         main_logger.info(source_file_detail)
@@ -323,6 +325,10 @@ def file_upload(source_file, dest_ip):
         # main_logger.info("File size is " + source_file_detail_list[6])
         # file_size = source_file_detail_list[6]
         file_size = re.search(vd_dict['ldap_user'] + " versa (\S+) ", source_file_detail).group(1)
+        source_md5_check = netconnect.send_command_expect("md5sum " + source_file)
+        main_logger.info(source_md5_check)
+        source_md5_checksum = re.search("(\S+)  " + source_file, source_md5_check).group(1)
+        main_logger.info("Source File Checksum : " + source_md5_checksum)
     time.sleep(1)
     try:
         cmd = "rsync -v " + source_file + " " + vd_dict['cpe_user'] + "@" + dest_ip + ":/home/versa/packages --progress"
@@ -339,7 +345,7 @@ def file_upload(source_file, dest_ip):
         return File_tr_Failed + str(sshexc)
     if 'assword:' in output1:
         netconnect.write_channel(vd_dict['cpe_passwd']+"\n")
-        time.sleep(10)
+        time.sleep(2)
         try:
             output2 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000)
             main_logger.info(output2)
@@ -363,12 +369,12 @@ def file_upload(source_file, dest_ip):
         try:
             #print "am in yes condition"
             netconnect.write_channel("yes\n")
-            time.sleep(5)
+            time.sleep(2)
             output3 = netconnect.read_until_prompt_or_pattern(pattern='password:')
             main_logger.info(output3)
             time.sleep(1)
             netconnect.write_channel(vd_dict['cpe_passwd'] + "\n")
-            time.sleep(10)
+            time.sleep(2)
         except ssh_exceptions as sshexc:
             main_logger.info(sshexc)
             main_logger.info("VD to CPE " + dest_ip + " file transfer Failed.")
@@ -381,11 +387,11 @@ def file_upload(source_file, dest_ip):
             op_copy = output4[:]
             transfered_Size = re.search("total size is (\S+) ", op_copy.replace(",", "")).group(1)
             if file_size==transfered_Size:
-                main_logger.info(op_copy)
+                #main_logger.info(op_copy)
                 main_logger.info("file transfer Success")
                 return File_tr_Success + "Transfered size " + transfered_Size
             else:
-                main_logger.info(op_copy)
+                #main_logger.info(op_copy)
                 main_logger.info("file transfer Failed")
                 close_connection(netconnect)
                 return File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
@@ -401,7 +407,7 @@ def file_upload(source_file, dest_ip):
 
 
 def sec_pkg_execute(netconnect, filename):
-    global file_size, cpe_logger
+    global file_size, cpe_logger, source_md5_checksum
     dest_file_detail = netconnect.send_command_expect("ls -ltr /home/versa/packages/" + filename, strip_prompt=False, strip_command=False)
     cpe_logger.info(dest_file_detail)
     if "No such file or directory" in dest_file_detail:
@@ -409,11 +415,19 @@ def sec_pkg_execute(netconnect, filename):
     else:
         dest_file_size = re.search(vd_dict['cpe_user'] + " versa (\S+) ", dest_file_detail).group(1)
         cpe_logger.info("destination file size: " + dest_file_size)
+        dest_file_md5_check = netconnect.send_command_expect("md5sum /home/versa/packages/" + source_file)
+        main_logger.info(dest_file_md5_check)
+        dest_file_md5_checksum = re.search("(\S+)  /home/versa/packages/" + source_file, dest_file_md5_check).group(1)
+        main_logger.info("Destination File Checksum : " + dest_file_md5_checksum)
     time.sleep(1)
     if file_size != dest_file_size:
         err_info =  "File Size is not same as source: sourcefile_size=" + file_size + " destfile_size=" + dest_file_size
         cpe_logger.info(err_info)
         return err_info
+    if dest_file_md5_checksum != source_md5_checksum:
+        md5_err_info = "File checksum is not same as Source: src_file_checksum=" + source_md5_checksum + " dest_file_checksum=" + dest_file_md5_checksum
+        cpe_logger.info(md5_err_info)
+        return md5_err_info
     #chmod of bin file
     cpe_logger.info(netconnect.send_command_expect("chmod a+x /home/versa/packages/" + filename, strip_prompt=False, strip_command=False))
     cpe_logger.info(netconnect.write_channel("sudo bash\n"))
@@ -430,8 +444,8 @@ def sec_pkg_execute(netconnect, filename):
     script_process_id = netconnect.send_command_expect("echo $!")
     cpe_logger.info(script_process_id)
     while script_process_id in netconnect.send_command_expect("ps -ef | grep " + script_process_id + " | grep -v grep"):
-        cpe_logger.info("process alive")
-        time.sleep(20)
+        cpe_logger.info(script_process_id + " process alive")
+        time.sleep(5)
     bin_process = netconnect.send_command_expect("cat " + sec_exec_logs_file, strip_prompt=False, strip_command=False)
     cpe_logger.info(bin_process)
     if 'error:' in bin_process or 'Error:' in bin_process:
@@ -466,7 +480,7 @@ def package_upload_to_devices():
     global File_tr_Success, File_tr_Failed, upload_report, result_list
     global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file
     cpe_list_print()
-    time.sleep(5)
+    time.sleep(2)
     device_report = {}
     for i, rows in cpe_list.iterrows():
         cpe_name = cpe_list.ix[i, 'device_name_in_vd']
@@ -498,7 +512,8 @@ def package_upload_to_devices():
             cpe_logger.info(cpe_name + " : CPE Redispatch Success")
             continue
         sec_result = sec_pkg_execute(netconnect, source_file)
-        close_cross_connection(netconnect)
+        #close_cross_connection(netconnect)
+        close_connection(netconnect)
         device_report[cpe_name] += [sec_result]
     for dev_key in device_report:
         result_list.append(device_report[dev_key])
@@ -512,9 +527,11 @@ def DO_File_Transfer():
     build_csv(get_device_list())
     raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
     csv_data_read = pd.read_csv(cpe_list_file_name)
+    batches = max(csv_data_read['batch'])
+    main_logger.info("total batches : " +  str(batches))
     # batches = csv_data_read['batch'].values.max
     # cpe_list = read_csv_file(cpe_list_file_name, 'CPE-27')
-    for singlebatch in range(1, batch+1):
+    for singlebatch in range(1, batches+1):
         cpe_list = read_csv_file(cpe_list_file_name, day, singlebatch)
         main_logger.info("DAY :" + str(day))
         main_logger.info("Batch : " + str(singlebatch))
