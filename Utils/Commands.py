@@ -416,9 +416,9 @@ def sec_pkg_execute(netconnect, filename):
         dest_file_size = re.search(vd_dict['cpe_user'] + " versa (\S+) ", dest_file_detail).group(1)
         cpe_logger.info("destination file size: " + dest_file_size)
         dest_file_md5_check = netconnect.send_command_expect("md5sum /home/versa/packages/" + source_file)
-        main_logger.info(dest_file_md5_check)
+        cpe_logger.info(dest_file_md5_check)
         dest_file_md5_checksum = re.search("(\S+)  /home/versa/packages/" + source_file, dest_file_md5_check).group(1)
-        main_logger.info("Destination File Checksum : " + dest_file_md5_checksum)
+        cpe_logger.info("Destination File Checksum : " + dest_file_md5_checksum)
     time.sleep(1)
     if file_size != dest_file_size:
         err_info =  "File Size is not same as source: sourcefile_size=" + file_size + " destfile_size=" + dest_file_size
