@@ -441,7 +441,11 @@ def sec_pkg_execute(netconnect, filename):
     cmd_exec_sec_pack = "sudo /home/versa/packages/" + filename + " > " + sec_exec_logs_file +" 2>&1 &"
     cpe_logger.info(cmd_exec_sec_pack)
     cpe_logger.info(netconnect.write_channel(cmd_exec_sec_pack + "\n"))
-    script_process_id = netconnect.send_command_expect("echo $!")
+    try:
+        script_process_id = netconnect.send_command_expect("echo $!")
+    except IOError as IE:
+        print IE
+        return "Unable to get Process ID "
     cpe_logger.info(script_process_id)
     while script_process_id in netconnect.send_command_expect("ps -ef | grep " + script_process_id + " | grep -v grep"):
         cpe_logger.info(script_process_id + " process alive")
