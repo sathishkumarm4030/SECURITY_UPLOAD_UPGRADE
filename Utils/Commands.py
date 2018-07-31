@@ -444,8 +444,8 @@ def sec_pkg_execute(netconnect, filename):
     try:
         script_process_id = netconnect.send_command_expect("echo $!")
     except IOError as IE:
-        print IE
-        return "Unable to get Process ID "
+        cpe_logger.info(IE)
+        return "Failed: Unable to get Process ID "
     cpe_logger.info(script_process_id)
     while script_process_id in netconnect.send_command_expect("ps -ef | grep " + script_process_id + " | grep -v grep"):
         cpe_logger.info(script_process_id + " process alive")
