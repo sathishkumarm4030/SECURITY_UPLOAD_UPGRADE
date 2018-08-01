@@ -491,6 +491,10 @@ def package_upload_to_devices():
         cpe_ip = cpe_list.ix[i, 'ip']
         result = file_upload(source_file, cpe_ip)
         device_report[cpe_name] = [cpe_name, source_file, result]
+        main_logger.info("<<<<<File Upload RESULT>>>")
+        main_logger.info("'cpe', 'filename', 'fileupload'")
+        for dev, file_upload_res in device_report.iteritems():
+            main_logger.info(file_upload_res)
         if File_tr_Failed in result:
             cpe_list = cpe_list.drop(index=i)
     for i, rows in cpe_list.iterrows():
@@ -519,6 +523,10 @@ def package_upload_to_devices():
         #close_cross_connection(netconnect)
         close_connection(netconnect)
         device_report[cpe_name] += [sec_result]
+        main_logger.info("<<<<<Security patch execution RESULT>>>")
+        main_logger.info("'cpe', 'filename', 'fileupload'")
+        for dev, sec_patch_result in device_report.iteritems():
+            main_logger.info(sec_patch_result)
     for dev_key in device_report:
         result_list.append(device_report[dev_key])
 
