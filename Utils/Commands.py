@@ -426,7 +426,7 @@ def file_upload(source_file, dest_ip):
         return File_tr_Failed + output1
 
 
-def sec_pkg_execute(netconnect, cpe_name, cpe_user, filename, cpe_logger):
+def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_logger):
     global file_size, source_md5_checksum
     dest_file_detail = netconnect.send_command_expect("ls -ltr /home/versa/packages/" + filename, strip_prompt=False, strip_command=False)
     cpe_logger.debug(dest_file_detail)
@@ -453,7 +453,7 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, filename, cpe_logger):
     cpe_logger.debug(netconnect.send_command_expect("chmod a+x /home/versa/packages/" + filename, strip_prompt=False, strip_command=False, expect_string = "\$|#"))
     cpe_logger.debug(netconnect.send_command_expect("sudo bash\n", expect_string = ":"))
     # time.sleep(1)
-    cpe_logger.debug(netconnect.send_command_expect(vd_dict['cpe_passwd'] + "\n", expect_string = "\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect(cpe_passwd + "\n", expect_string = "\$|#"))
     # time.sleep(1)
     cpe_logger.debug(netconnect.send_command_expect("exit\n", expect_string = "\$|#"))
     # time.sleep(1)
@@ -505,7 +505,7 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, filename, cpe_logger):
     #         cpe_logger.info(sshexc)
     #         return str(sshexc)
 
-def run_thread_for_upgrade(cpe_name, cpe_user, dev_dict, i):
+def run_thread_for_upgrade(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     global device_report, cpe_list
     cpe_logger = setup_logger(cpe_name, cpe_name)
     cpe_logger_dict[cpe_name] = cpe_logger
@@ -521,7 +521,7 @@ def run_thread_for_upgrade(cpe_name, cpe_user, dev_dict, i):
         cpe_list = cpe_list.drop(index=i)
         cpe_logger.info(cpe_name + " : CPE Redispatch failed")
         return
-    sec_result = sec_pkg_execute(netconnect, cpe_name, cpe_user, source_file, cpe_logger)
+    sec_result = sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, source_file, cpe_logger)
     device_report[cpe_name] += [sec_result]
     # close_cross_connection(netconnect)
     close_connection(netconnect)
@@ -564,7 +564,7 @@ def sec_patch_upgrade_devices():
                 "port": '22'
             }
             device_report[cpe_name] = [cpe_name, source_file]
-            thrd_objs = threading.Thread(target=run_thread_for_upgrade, args=(cpe_name, dev_username, dev_dict, i))
+            thrd_objs = threading.Thread(target=run_thread_for_upgrade, args=(cpe_name, dev_username, dev_passwd, dev_dict, i))
             # thrd_objs.setDaemon(True)
             threads.append(thrd_objs)
         for th in threads:
