@@ -266,7 +266,7 @@ def build_csv(device_list):
 
 
 
-def get_device_list():
+def get_device_list(oper_type='patch_upgrade'):
     global batch
     response1 = requests.get(vdurl + appliance_url,
                              auth=(user, passwd),
@@ -280,8 +280,12 @@ def get_device_list():
         # if i['type']=='branch':
         # if i['ownerOrg'] != 'Colt':
         if i['ping-status'] == 'REACHABLE':
-            if count%11 == 0:
-                batch += 1
+            if oper_type == 'file_transfer':
+                if count%5 == 0:
+                    batch += 1
+            else:
+                if count%11 == 0:
+                    batch += 1
             device_list.append(i['name'])
             device_list.append(i['ipAddress'])
             device_list.append(day)
@@ -324,16 +328,18 @@ def file_check(source_file):
         source_md5_checksum = re.search("(\S+)  " + source_file, source_md5_check).group(1)
         main_logger.debug("Source File Checksum : " + source_md5_checksum)
 
+#source_file, cpe_ip, dev_username, dev_passwd, i
 
-def file_upload(source_file, dest_ip, dev_user, dev_passwd):
+def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_passed):
     global File_tr_Success, File_tr_Failed, file_size, source_md5_checksum
+    global cpe_list, device_report
     File_tr_Success = "File Transfer Success : "
     File_tr_Failed = "File Transfer Failed : "
 
     netconnect = make_connection(vd_ssh_dict)
     source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, strip_prompt=False, strip_command=False)
     # source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, expect_string = "\$")
-    main_logger.info(source_file_detail)
+    main_logger.debug(source_file_detail)
 
 
     if "No such file or directory" in source_file_detail:
@@ -361,7 +367,7 @@ def file_upload(source_file, dest_ip, dev_user, dev_passwd):
         main_logger.debug(sshexc)
         main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
         close_connection(netconnect)
-        return File_tr_Failed + str(sshexc)
+        result = File_tr_Failed + str(sshexc)
     if 'assword:' in output1:
         netconnect.write_channel(dev_passwd+"\n")
         time.sleep(2)
@@ -372,18 +378,18 @@ def file_upload(source_file, dest_ip, dev_user, dev_passwd):
             transfered_Size = re.search("total size is (\S+) ", op_copy.replace(",", "")).group(1)
             if file_size==transfered_Size:
                 # main_logger.debug(op_copy)
-                main_logger.debug("file transfer Success")
-                return File_tr_Success + "Transfered size " + transfered_Size
+                main_logger.debug(dest_name + " : file transfer Success")
+                result = File_tr_Success + "Transfered size " + transfered_Size
             else:
                 # main_logger.debug(op_copy)
                 main_logger.debug("file transfer Failed")
                 close_connection(netconnect)
-                return File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
+                result = File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
         except ssh_exceptions as sshexc:
             main_logger.debug(sshexc)
             main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
             close_connection(netconnect)
-            return File_tr_Failed + str(sshexc)
+            result = File_tr_Failed + str(sshexc)
     elif 'yes' in output1:
         try:
             #print "am in yes condition"
@@ -398,7 +404,7 @@ def file_upload(source_file, dest_ip, dev_user, dev_passwd):
             main_logger.debug(sshexc)
             main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
             close_connection(netconnect)
-            return File_tr_Failed + str(sshexc)
+            result = File_tr_Failed + str(sshexc)
         try:
             output4 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000)
             main_logger.debug(output4)
@@ -407,22 +413,25 @@ def file_upload(source_file, dest_ip, dev_user, dev_passwd):
             transfered_Size = re.search("total size is (\S+) ", op_copy.replace(",", "")).group(1)
             if file_size==transfered_Size:
                 #main_logger.debug(op_copy)
-                main_logger.debug("file transfer Success")
-                return File_tr_Success + "Transfered size " + transfered_Size
+                main_logger.debug(dest_name + " : file transfer Success")
+                result = File_tr_Success + "Transfered size " + transfered_Size
             else:
                 #main_logger.debug(op_copy)
-                main_logger.debug("file transfer Failed")
+                main_logger.debug(dest_name + " : file transfer Failed")
                 close_connection(netconnect)
-                return File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
+                result = File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
         except ssh_exceptions as sshexc:
             main_logger.debug(sshexc)
             main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
             close_connection(netconnect)
-            return File_tr_Failed + str(sshexc)
+            result = File_tr_Failed + str(sshexc)
     else:
         main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
         close_connection(netconnect)
-        return File_tr_Failed + output1
+        result =  File_tr_Failed + output1
+    device_report[dest_name] = [dest_name, source_file, result]
+    return
+
 
 
 def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_logger):
@@ -603,37 +612,48 @@ def sec_patch_upgrade_devices():
         result_list.append(device_report[dev_key])
 
 def package_upload_to_devices():
-    global File_tr_Success, File_tr_Failed, upload_report, result_list
+    global File_tr_Success, File_tr_Failed, upload_report, result_list, device_report
     global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file
     cpe_list_print()
     time.sleep(2)
     device_report = {}
-    for i, rows in cpe_list.iterrows():
-        cpe_name = cpe_list.ix[i, 'device_name_in_vd']
-        cpe_ip = cpe_list.ix[i, 'ip']
-        cpe_type = cpe_list.ix[i, 'type']
-        if cpe_type == 'branch':
-            dev_username = vd_dict['cpe_user']
-            dev_passwd = vd_dict['cpe_passwd']
-        else:
-            dev_username = vd_dict['node_user']
-            dev_passwd = vd_dict['node_passwd']
+    try:
+        threads = []
+        for i, rows in cpe_list.iterrows():
+            cpe_name = cpe_list.ix[i, 'device_name_in_vd']
+            cpe_ip = cpe_list.ix[i, 'ip']
+            cpe_type = cpe_list.ix[i, 'type']
+            if cpe_type == 'branch':
+                dev_username = vd_dict['cpe_user']
+                dev_passwd = vd_dict['cpe_passwd']
+            else:
+                dev_username = vd_dict['node_user']
+                dev_passwd = vd_dict['node_passwd']
+            thrd_objs = threading.Thread(target=file_upload, args=(source_file, cpe_name, cpe_ip, dev_username, dev_passwd, i))
+            threads.append(thrd_objs)
+        for th in threads:
+            main_logger.info("starting thread :" + str(th.name) + " For device " + th._Thread__args[1] + "\n")
+            # print "DEVICE NAME: " + th._Thread__args[0]
+            th.start()
+        #print threading.activeCount()
 
-        dev_dict = {
-            "device_type": 'linux', "ip": cpe_ip, \
-            "username": dev_username, "password": dev_passwd, \
-            "port": '22'
-        }
-        result = file_upload(source_file, cpe_ip, dev_username, dev_passwd)
-        device_report[cpe_name] = [cpe_name, source_file, result]
-        main_logger.debug("<<<<<File Upload RESULT>>>")
-        main_logger.debug("'cpe', 'filename', 'fileupload'")
-        for dev, file_upload_res in device_report.iteritems():
-            main_logger.debug(file_upload_res)
-        if File_tr_Failed in result:
-            cpe_list = cpe_list.drop(index=i)
+        for th in threads:
+            th.join()
+
+        for th in threads:
+            th.exit()
+    except:
+            main_logger.debug("Error: unable to start ")
+            # sec_result = run_thread_for_upgrade(cpe_name, dev_dict, i)
+            # device_report[cpe_name] += [sec_result]
+
+    main_logger.info("<<<<<Security patch execution RESULT>>>")
+    main_logger.info("'cpe', 'filename', 'patch_upgrade_status'")
+    for dev, sec_patch_result in device_report.iteritems():
+        main_logger.info(sec_patch_result)
     for dev_key in device_report:
         result_list.append(device_report[dev_key])
+
 
 
 def DO_File_Transfer():
@@ -641,7 +661,7 @@ def DO_File_Transfer():
     time.sleep(1)
     source_file = raw_input("Enter File name to transfer VersaDirector to Devices.(file should be in VD's path /home/" + vd_dict['ldap_user'] + "):\n")
     global cpe_list, batch
-    build_csv(get_device_list())
+    build_csv(get_device_list(oper_type="file_transfer"))
     raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
     csv_data_read = pd.read_csv(cpe_list_file_name)
     batches = max(csv_data_read['batch'])
