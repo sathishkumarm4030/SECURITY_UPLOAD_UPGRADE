@@ -145,8 +145,8 @@ def write_result_from_dict(results):
             main_logger.debug("==" * 50)
 
 
-def write_result(results):
-    data_header = ['cpe', 'filename', 'fileupload', 'securitypck']
+def write_result(results, result_type):
+    data_header = ['cpe', 'filename', result_type]
     with open(logfile_dir + 'RESULT.csv', 'w') as file_writer:
         writer = csv.writer(file_writer)
         writer.writerow(data_header)
@@ -280,29 +280,28 @@ def get_device_list():
         # if i['type']=='branch':
         # if i['ownerOrg'] != 'Colt':
         if i['ping-status'] == 'REACHABLE':
-            if i['sync-status'] == 'IN_SYNC':
-                if count%11 == 0:
-                    batch += 1
-                device_list.append(i['name'])
-                device_list.append(i['ipAddress'])
-                device_list.append(day)
-                device_list.append(batch)
-                # device_list.append(i['ownerOrg'])
-                device_list.append(i['type'])
-                device_list.append(i['softwareVersion'])
-                device_list.append(i['ping-status'])
-                device_list.append(i['sync-status'])
-                # try:
-                #     if i['Hardware']!="":
-                #         device_list.append(i['Hardware']['serialNo'])
-                #         device_list.append(i['Hardware']['model'])
-                #         device_list.append(i['Hardware']['packageName'])
-                # except KeyError as ke:
-                #     print i['name']
-                #     print "Hardware Info NIL"
-                #print count, day, batch
-                count +=1
-                devices_list.append(device_list)
+            if count%11 == 0:
+                batch += 1
+            device_list.append(i['name'])
+            device_list.append(i['ipAddress'])
+            device_list.append(day)
+            device_list.append(batch)
+            # device_list.append(i['ownerOrg'])
+            device_list.append(i['type'])
+            device_list.append(i['softwareVersion'])
+            device_list.append(i['ping-status'])
+            device_list.append(i['sync-status'])
+            # try:
+            #     if i['Hardware']!="":
+            #         device_list.append(i['Hardware']['serialNo'])
+            #         device_list.append(i['Hardware']['model'])
+            #         device_list.append(i['Hardware']['packageName'])
+            # except KeyError as ke:
+            #     print i['name']
+            #     print "Hardware Info NIL"
+            #print count, day, batch
+            count +=1
+            devices_list.append(device_list)
     # print devices_list
     return devices_list
 
@@ -326,7 +325,7 @@ def file_check(source_file):
         main_logger.debug("Source File Checksum : " + source_md5_checksum)
 
 
-def file_upload(source_file, dest_ip):
+def file_upload(source_file, dest_ip, dev_user, dev_passwd):
     global File_tr_Success, File_tr_Failed, file_size, source_md5_checksum
     File_tr_Success = "File Transfer Success : "
     File_tr_Failed = "File Transfer Failed : "
@@ -351,7 +350,7 @@ def file_upload(source_file, dest_ip):
         main_logger.debug("Source File Checksum : " + source_md5_checksum)
     time.sleep(1)
     try:
-        cmd = "rsync -v " + source_file + " " + vd_dict['cpe_user'] + "@" + dest_ip + ":/home/versa/packages --progress"
+        cmd = "rsync -v " + source_file + " " + dev_user + "@" + dest_ip + ":/home/versa/packages --progress"
         main_logger.debug("CMD>> : " + cmd)
         main_logger.debug(netconnect.write_channel(cmd + "\n"))
         time.sleep(1)
@@ -364,7 +363,7 @@ def file_upload(source_file, dest_ip):
         close_connection(netconnect)
         return File_tr_Failed + str(sshexc)
     if 'assword:' in output1:
-        netconnect.write_channel(vd_dict['cpe_passwd']+"\n")
+        netconnect.write_channel(dev_passwd+"\n")
         time.sleep(2)
         try:
             output2 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000)
@@ -393,7 +392,7 @@ def file_upload(source_file, dest_ip):
             output3 = netconnect.read_until_prompt_or_pattern(pattern='password:')
             main_logger.debug(output3)
             time.sleep(1)
-            netconnect.write_channel(vd_dict['cpe_passwd'] + "\n")
+            netconnect.write_channel(dev_passwd + "\n")
             time.sleep(2)
         except ssh_exceptions as sshexc:
             main_logger.debug(sshexc)
@@ -475,13 +474,18 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
     cpe_logger.debug(".............." + script_process_id + "..........")
     if script_process_id == "":
         return "Failed: Process not found "
+    timer = 0
     while script_process_id in netconnect.send_command_expect("ps -ef | grep -w " + script_process_id + " | grep -v grep", expect_string = "\$|#"):
+        cpe_logger.debug("process timer value : " + str(timer))
+        if timer > 120:
+            return filename + " : " + script_process_id + " Process running more than 120 secs"
         cpe_logger.info(cpe_name + " : " + script_process_id + " process alive")
+        timer += 5
         time.sleep(5)
     bin_process = netconnect.send_command_expect("cat " + sec_exec_logs_file, strip_prompt=False, strip_command=False, expect_string = "\$|#")
     cpe_logger.debug(bin_process)
     if 'error:' in bin_process or 'Error' in bin_process:
-        return filename + " Patch execuiton failed"
+        return filename + " Patch execuiton failed. Error Found in exec Log"
     else:
         return filename + " Patch Execution success"
     # output_exp_pswd = netconnect.read_until_prompt_or_pattern(pattern='password for', max_loops=50)
@@ -607,7 +611,20 @@ def package_upload_to_devices():
     for i, rows in cpe_list.iterrows():
         cpe_name = cpe_list.ix[i, 'device_name_in_vd']
         cpe_ip = cpe_list.ix[i, 'ip']
-        result = file_upload(source_file, cpe_ip)
+        cpe_type = cpe_list.ix[i, 'type']
+        if cpe_type == 'branch':
+            dev_username = vd_dict['cpe_user']
+            dev_passwd = vd_dict['cpe_passwd']
+        else:
+            dev_username = vd_dict['node_user']
+            dev_passwd = vd_dict['node_passwd']
+
+        dev_dict = {
+            "device_type": 'linux', "ip": cpe_ip, \
+            "username": dev_username, "password": dev_passwd, \
+            "port": '22'
+        }
+        result = file_upload(source_file, cpe_ip, dev_username, dev_passwd)
         device_report[cpe_name] = [cpe_name, source_file, result]
         main_logger.debug("<<<<<File Upload RESULT>>>")
         main_logger.debug("'cpe', 'filename', 'fileupload'")
@@ -639,7 +656,7 @@ def DO_File_Transfer():
         main_logger.debug("DAY :" + str(day))
         main_logger.debug("Batch : " + str(singlebatch))
         package_upload_to_devices()
-    write_result(result_list)
+    write_result(result_list, 'file_upload')
 
 
 def DO_Sec_patch_Upgrade():
@@ -659,7 +676,7 @@ def DO_Sec_patch_Upgrade():
         main_logger.info("DAY :" + str(day))
         main_logger.info("Batch : " + str(singlebatch))
         sec_patch_upgrade_devices()
-    write_result(result_list)
+    write_result(result_list, 'sec_patch_execuiton')
 
 # main()
 
