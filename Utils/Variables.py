@@ -50,7 +50,7 @@ def get_vd_details():
     node_user = raw_input("Enter Versa NODE devices Username:\n")
     print "Versa NODE devices Username:" + node_user
     node_passwd = getpass.getpass("Enter Versa NODE Password:\n")
-    # ip = '10.91.116.36'
+    # ip = '10.91.116.35'
     # ldap_user = 'admin'
     # ldap_passwd = 'versa123'
     # user = 'Sathish'
@@ -90,8 +90,8 @@ vd_ssh_dict = {
     'port': 22,
 }
 
-
-
+vshell_cmd = """grep 'if \[\[ "$1" == "-c" \]\]; then shift;eval "$@";exit $?; fi ' /opt/versa/scripts/vshell || sed -i  '/ Main /a\ if [[ "$1" == "-c" ]]; then shift;eval "$@";exit $?; fi ' /opt/versa/scripts/vshell"""
+vshellfile = "/opt/versa/scripts/vshell"
 
 cmd1 = 'show interfaces brief | tab | nomore'
 cmd2 = 'show bgp neighbor brief | nomore'

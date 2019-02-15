@@ -80,7 +80,7 @@ main_logger = setup_logger('Main', 'UpgradeVersaCpes')
 
 
 
-def do_cross_connection(cpe_name, vd_ssh_dict, dev_dict):
+def do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='linux'):
     global cpe_logger
     netconnect = make_connection(vd_ssh_dict)
     netconnect.write_channel("ssh " + dev_dict["username"] + "@" + dev_dict["ip"] + "\n")
@@ -106,7 +106,7 @@ def do_cross_connection(cpe_name, vd_ssh_dict, dev_dict):
     time.sleep(2)
     try:
         main_logger.debug("doing redispatch")
-        redispatch(netconnect, device_type='linux')
+        redispatch(netconnect, device_type=redispatch_type)
     except ValueError as Va:
         main_logger.info(cpe_name + " : "+ str(Va))
         main_logger.info(cpe_name + ": Not able to get router prompt from VD to CPE " + dev_dict["ip"] + " CLI. please check login creds")
@@ -330,6 +330,20 @@ def file_check(source_file):
 
 #source_file, cpe_ip, dev_username, dev_passwd, i
 
+def modify_vshell(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_logger):
+    global file_size, source_md5_checksum
+    cpe_logger.debug(netconnect.send_command_expect("shell", expect_string="\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("sudo bash\n", expect_string = ":|\$|#"))
+    # time.sleep(1)
+    cpe_logger.debug(netconnect.send_command_expect(cpe_passwd + "\n", expect_string = "\$|#"))
+    # time.sleep(1)
+    # cpe_logger.debug(netconnect.send_command_expect("exit\n", expect_string = "\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("cat /opt/versa/scripts/vshell", strip_prompt=False, strip_command=False, expect_string = "\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect(vshell_cmd, strip_prompt=False, strip_command=False, expect_string = "\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("cat /opt/versa/scripts/vshell", strip_prompt=False, strip_command=False, expect_string = "\$|#"))
+    return "File Modification done"
+
+
 def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_passed):
     global File_tr_Success, File_tr_Failed, file_size, source_md5_checksum
     global cpe_list, device_report
@@ -372,7 +386,7 @@ def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_pas
         netconnect.write_channel(dev_passwd+"\n")
         time.sleep(2)
         try:
-            output2 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000)
+            output2 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000000)
             main_logger.debug(output2)
             op_copy = output2[:]
             transfered_Size = re.search("total size is (\S+) ", op_copy.replace(",", "")).group(1)
@@ -406,7 +420,7 @@ def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_pas
             close_connection(netconnect)
             result = File_tr_Failed + str(sshexc)
         try:
-            output4 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000)
+            output4 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000000)
             main_logger.debug(output4)
             time.sleep(2)
             op_copy = output4[:]
@@ -504,7 +518,7 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
     #     time.sleep(1)
     #     try:
     #
-    #         output2 = netconnect.read_until_prompt_or_pattern(pattern='\\:\\~\\$', max_loops=5000)
+    #         output2 = netconnect.read_until_prompt_or_pattern(pattern='\\:\\~\\$', max_loops=5000000)
     #         cpe_logger.info(output2)
     #         if "Error" in output2:
     #             err_info = "Error in security pacakge execution"
@@ -517,6 +531,29 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
     #     except ssh_exceptions as sshexc:
     #         cpe_logger.info(sshexc)
     #         return str(sshexc)
+
+
+def run_thread_for_modify(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
+    global device_report, cpe_list
+    cpe_logger = setup_logger(cpe_name, cpe_name)
+    cpe_logger_dict[cpe_name] = cpe_logger
+    netconnect = do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='versa')
+    if netconnect == "VD to CPE " + dev_dict["ip"] + "ssh Failed.":
+        device_report[cpe_name] += ["VD -> CPE " + dev_dict["ip"] + " SSH connection failed"]
+        cpe_list = cpe_list.drop(index=i)
+        cpe_logger.info(cpe_name + " : VD -> CPE " + dev_dict[
+            "ip"] + " SSH connection failed. please check IP & reachabilty from VD")
+        return
+    if netconnect == "Redispatch not Success":
+        device_report[cpe_name] += ["CPE Redispatch failed"]
+        cpe_list = cpe_list.drop(index=i)
+        cpe_logger.info(cpe_name + " : CPE Redispatch failed")
+        return
+    sec_result = modify_vshell(netconnect, cpe_name, cpe_user, cpe_passwd, source_file, cpe_logger)
+    device_report[cpe_name] += [sec_result]
+    # close_cross_connection(netconnect)
+    close_connection(netconnect)
+    return
 
 def run_thread_for_upgrade(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     global device_report, cpe_list
@@ -539,6 +576,68 @@ def run_thread_for_upgrade(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     # close_cross_connection(netconnect)
     close_connection(netconnect)
     return
+
+
+def Modify_vshell_file():
+    global File_tr_Success, File_tr_Failed, upload_report, result_list
+    global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file
+    global device_report
+    cpe_list_print()
+    time.sleep(2)
+    device_report = {}
+    try:
+        threads = []
+        for i, rows in cpe_list.iterrows():
+            cpe_name = cpe_list.ix[i, 'device_name_in_vd']
+            cpe_ip = cpe_list.ix[i, 'ip']
+            cpe_type = cpe_list.ix[i, 'type']
+            if cpe_type == 'branch':
+                dev_username = vd_dict['cpe_user']
+                dev_passwd =  vd_dict['cpe_passwd']
+            else:
+                dev_username = vd_dict['node_user']
+                dev_passwd =  vd_dict['node_passwd']
+
+            dev_dict = {
+                "device_type": 'linux', "ip": cpe_ip, \
+                "username": dev_username, "password": dev_passwd, \
+                "port": '22'
+            }
+            device_report[cpe_name] = [cpe_name, source_file]
+            thrd_objs = threading.Thread(target=run_thread_for_modify, args=(cpe_name, dev_username, dev_passwd, dev_dict, i))
+            # thrd_objs.setDaemon(True)
+            threads.append(thrd_objs)
+        for th in threads:
+            main_logger.info("starting thread :" + str(th.name) + " For device " + th._Thread__args[0] + "\n")
+            # print "DEVICE NAME: " + th._Thread__args[0]
+            th.start()
+
+        #print threading.activeCount()
+
+        for th in threads:
+            th.join()
+
+        for th in threads:
+            th.exit()
+
+        #print threading.activeCount()
+            # thrd_objs.start()
+            # thrd_objs.join()
+            # thrd_objs.join()
+            # thread.start_new_thread(run_thread_for_upgrade, (cpe_name, dev_dict, i))
+            # print " starting thread for " + str(i)
+    except:
+        main_logger.debug("Error: unable to start ")
+        # sec_result = run_thread_for_upgrade(cpe_name, dev_dict, i)
+        # device_report[cpe_name] += [sec_result]
+
+    main_logger.info("<<<<<Vshell modfication result RESULT>>>")
+    main_logger.info("'cpe', 'filename', 'Vshell modification'")
+    for dev, sec_patch_result in device_report.iteritems():
+        main_logger.info(sec_patch_result)
+    for dev_key in device_report:
+        result_list.append(device_report[dev_key])
+
 
 
 def sec_patch_upgrade_devices():
@@ -696,6 +795,25 @@ def DO_Sec_patch_Upgrade():
         main_logger.info("DAY :" + str(day))
         main_logger.info("Batch : " + str(singlebatch))
         sec_patch_upgrade_devices()
+    write_result(result_list, 'sec_patch_execuiton')
+
+def DO_vshell_Modify():
+    global source_file, result_list
+    time.sleep(1)
+    source_file = vshellfile
+    global cpe_list, batch
+    build_csv(get_device_list())
+    raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
+    csv_data_read = pd.read_csv(cpe_list_file_name)
+    batches = max(csv_data_read['batch'])
+    batches_list = csv_data_read['batch'].drop_duplicates().sort_values().values
+    main_logger.info("total batches : " +  str(csv_data_read['batch'].drop_duplicates().count()))
+    main_logger.info("batch List : " + str(batches_list))
+    for singlebatch in batches_list:
+        cpe_list = read_csv_file(cpe_list_file_name, day, singlebatch)
+        main_logger.info("DAY :" + str(day))
+        main_logger.info("Batch : " + str(singlebatch))
+        Modify_vshell_file()
     write_result(result_list, 'sec_patch_execuiton')
 
 # main()
