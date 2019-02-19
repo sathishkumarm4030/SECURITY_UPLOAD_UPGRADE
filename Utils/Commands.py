@@ -102,6 +102,7 @@ def do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='linux'
         main_logger.debug(output)
     else:
         # cpe_logger.info(output)
+        close_connection(netconnect)
         return "VD to CPE " + dev_dict["ip"] + "ssh Failed."
     time.sleep(2)
     try:
@@ -110,6 +111,7 @@ def do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='linux'
     except ValueError as Va:
         main_logger.info(cpe_name + " : "+ str(Va))
         main_logger.info(cpe_name + ": Not able to get router prompt from VD to CPE " + dev_dict["ip"] + " CLI. please check login creds")
+        close_connection(netconnect)
         return "Redispatch not Success"
     time.sleep(2)
     return netconnect
@@ -227,6 +229,26 @@ def make_connection(a_device):
     main_logger.debug(str(net_connect) + " connection opened")
     return net_connect
 
+def make_connection_to_cli(a_device):
+    global main_logger, curr_prompt
+    a_device['device_type'] = 'versa'
+    try:
+        net_connect = ConnectHandler(**a_device)
+        output = net_connect.read_channel()
+        main_logger.debug(output)
+    except ValueError as Va:
+        main_logger.debug(Va)
+        main_logger.debug("Not able to enter Versa Director CLI. please Check")
+        exit()
+    net_connect.enable()
+    time.sleep(2)
+    main_logger.debug("{}: {}".format(net_connect.device_type, net_connect.find_prompt()))
+    curr_prompt = net_connect.find_prompt()
+    # print str(net_connect) + " connection opened"
+    main_logger.debug(str(net_connect) + " connection opened")
+    return net_connect
+
+
 
 def close_cross_connection(nc):
     time.sleep(1)
@@ -308,6 +330,106 @@ def get_device_list(oper_type='patch_upgrade'):
             devices_list.append(device_list)
     # print devices_list
     return devices_list
+
+
+def get_device_list_wo_ping_check(oper_type='patch_upgrade'):
+    global batch
+    response1 = requests.get(vdurl + appliance_url,
+                             auth=(user, passwd),
+                             headers=headers3,
+                             verify=False)
+    data1 = response1.json()
+    count, day, batch = 1, 1, 1
+    # print data1
+    for i in data1['versanms.ApplianceStatusResult']['appliances']:
+        device_list = []
+        # if i['type']=='branch':
+        # if i['ownerOrg'] != 'Colt':
+        # if i['ping-status'] == 'REACHABLE':
+        if oper_type == 'file_transfer':
+            if count%5 == 0:
+                batch += 1
+        else:
+            if count%9 == 0:
+                batch += 1
+        device_list.append(i['name'])
+        device_list.append(i['ipAddress'])
+        device_list.append(day)
+        device_list.append(batch)
+        # device_list.append(i['ownerOrg'])
+        device_list.append(i['type'])
+        if 'softwareVersion' in i:
+            device_list.append(i['softwareVersion'])
+        device_list.append(i['ping-status'])
+        device_list.append(i['sync-status'])
+        # try:
+        #     if i['Hardware']!="":
+        #         device_list.append(i['Hardware']['serialNo'])
+        #         device_list.append(i['Hardware']['model'])
+        #         device_list.append(i['Hardware']['packageName'])
+        # except KeyError as ke:
+        #     print i['name']
+        #     print "Hardware Info NIL"
+        #print count, day, batch
+        count +=1
+        devices_list.append(device_list)
+    # print devices_list
+    return devices_list
+
+
+
+def request_ping(net_connect, cpe):
+    net_connect.send_command_expect("cli", strip_prompt=False, strip_command=False, expect_string=">")
+    cmd = "request devices device " + cpe + " ping"
+    main_logger.info("CMD>> : " + cmd)
+    output = net_connect.send_command_expect(cmd, strip_prompt=False, strip_command=False, expect_string=">")
+    # net_connect.send_command_expect("quit", strip_prompt=False, strip_command=False)
+    main_logger.info(output)
+    return str(", 0% packet loss," in output)
+
+
+def request_connect(net_connect, cpe):
+    cmd = "request devices device " + cpe + " connect"
+    main_logger.info("CMD>> : " + cmd)
+    output = net_connect.send_command_expect(cmd, strip_prompt=False, strip_command=False)
+    main_logger.info(output)
+    return str(" Connected to" in output)
+
+
+def request_live_status(net_connect, cpe):
+    cmd = "request devices device " + cpe + " check-sync"
+    main_logger.info("CMD>> : " + cmd)
+    output = net_connect.send_command_expect(cmd, strip_prompt=False, strip_command=False)
+    main_logger.info(output)
+    return str("result in-sync" in output)
+
+
+def request_sync_from_cpe(net_connect, cpe):
+    cmd = "request devices device " + cpe + " sync-from"
+    main_logger.info("CMD>> : " + cmd)
+    output = net_connect.send_command_expect(cmd, strip_prompt=False, strip_command=False)
+    main_logger.info(output)
+    return str(" result true" in output)
+
+def request_sync_from_cpe(net_connect, cpe):
+    cmd = "request devices device " + cpe + " sync-from"
+    main_logger.info("CMD>> : " + cmd)
+    output = net_connect.send_command_expect(cmd, strip_prompt=False, strip_command=False)
+    main_logger.info(output)
+    return str(" result true" in output)
+
+
+def check_device_status(nc, device_name):
+    if request_ping(nc, device_name) == True:
+        if request_connect(nc, device_name) == "True":
+            if request_sync_from_cpe(nc, device_name):
+                        return "PASS"
+            else:
+                return "CPE out-of sync."
+        else:
+            return "VD --> CPE Request connect failed."
+    else:
+        return "VD --> CPE Request ping failed."
 
 def file_check(source_file):
     global file_size, source_md5_checksum
@@ -537,6 +659,16 @@ def run_thread_for_modify(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     global device_report, cpe_list
     cpe_logger = setup_logger(cpe_name, cpe_name)
     cpe_logger_dict[cpe_name] = cpe_logger
+    #check_ping
+    # vd_cli_nc = make_connection_to_cli(vd_ssh_dict)
+    # check_result = request_ping(vd_cli_nc, cpe_name)
+    # close_connection(vd_cli_nc)
+    # print check_result
+    # if check_result == 'False':
+    #     device_report[cpe_name] += ["Ping failed"]
+    #     cpe_list = cpe_list.drop(index=i)
+    #     cpe_logger.info(cpe_name + ":" + check_result)
+    #     return
     netconnect = do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='versa')
     if netconnect == "VD to CPE " + dev_dict["ip"] + "ssh Failed.":
         device_report[cpe_name] += ["VD -> CPE " + dev_dict["ip"] + " SSH connection failed"]
@@ -585,6 +717,31 @@ def Modify_vshell_file():
     cpe_list_print()
     time.sleep(2)
     device_report = {}
+    vd_cli_nc = make_connection_to_cli(vd_ssh_dict)
+    for i, rows in cpe_list.iterrows():
+        cpe_name = cpe_list.ix[i, 'device_name_in_vd']
+        cpe_ip = cpe_list.ix[i, 'ip']
+        cpe_type = cpe_list.ix[i, 'type']
+        if cpe_type == 'branch':
+            dev_username = vd_dict['cpe_user']
+            dev_passwd = vd_dict['cpe_passwd']
+        else:
+            dev_username = vd_dict['node_user']
+            dev_passwd = vd_dict['node_passwd']
+
+        dev_dict = {
+            "device_type": 'linux', "ip": cpe_ip, \
+            "username": dev_username, "password": dev_passwd, \
+            "port": '22'
+        }
+        device_report[cpe_name] = [cpe_name, source_file]
+        check_result = request_ping(vd_cli_nc, cpe_name)
+        print check_result
+        if check_result == 'False':
+            device_report[cpe_name] += ["Ping failed"]
+            cpe_list = cpe_list.drop(index=i)
+            main_logger.info(cpe_name + ":" + check_result)
+    close_connection(vd_cli_nc)
     try:
         threads = []
         for i, rows in cpe_list.iterrows():
@@ -612,7 +769,7 @@ def Modify_vshell_file():
             # print "DEVICE NAME: " + th._Thread__args[0]
             th.start()
 
-        #print threading.activeCount()
+        print threading.activeCount()
 
         for th in threads:
             th.join()
@@ -620,7 +777,7 @@ def Modify_vshell_file():
         for th in threads:
             th.exit()
 
-        #print threading.activeCount()
+        print threading.activeCount()
             # thrd_objs.start()
             # thrd_objs.join()
             # thrd_objs.join()
@@ -802,7 +959,7 @@ def DO_vshell_Modify():
     time.sleep(1)
     source_file = vshellfile
     global cpe_list, batch
-    build_csv(get_device_list())
+    build_csv(get_device_list_wo_ping_check())
     raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
     csv_data_read = pd.read_csv(cpe_list_file_name)
     batches = max(csv_data_read['batch'])
@@ -814,6 +971,7 @@ def DO_vshell_Modify():
         main_logger.info("DAY :" + str(day))
         main_logger.info("Batch : " + str(singlebatch))
         Modify_vshell_file()
+        time.sleep(1)
     write_result(result_list, 'sec_patch_execuiton')
 
 # main()

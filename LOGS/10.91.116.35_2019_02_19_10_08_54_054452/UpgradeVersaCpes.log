@@ -1,0 +1,260 @@
+2019-02-19 10:08:54,060 - Main - INFO - SCRIPT Started
+2019-02-19 10:08:54,061 - Main - INFO - Result  File : /home/sathish123/PycharmProjects/FileTRansfer_and_config_cmds/LOGS/10.91.116.35_2019_02_19_10_08_54_054452//RESULT.csv
+2019-02-19 10:08:54,061 - Main - INFO - LOG FILES Path: /home/sathish123/PycharmProjects/FileTRansfer_and_config_cmds/LOGS/10.91.116.35_2019_02_19_10_08_54_054452/
+2019-02-19 10:08:57,649 - Main - INFO - total batches : 8
+2019-02-19 10:08:57,649 - Main - INFO - batch List : [1 2 3 4 5 6 7 8]
+2019-02-19 10:08:57,657 - Main - INFO - DAY :1
+2019-02-19 10:08:57,657 - Main - INFO - Batch : 1
+2019-02-19 10:08:57,657 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-02-19 10:08:57,659 - Main - INFO - CPE-1
+2019-02-19 10:08:57,659 - Main - INFO - CPE-13
+2019-02-19 10:08:57,659 - Main - INFO - CPE-131-Manish-4G
+2019-02-19 10:08:57,660 - Main - INFO - CPE-14
+2019-02-19 10:08:57,660 - Main - INFO - CPE-15
+2019-02-19 10:08:57,661 - Main - INFO - CPE-16
+2019-02-19 10:08:57,661 - Main - INFO - CPE-17-sec
+2019-02-19 10:08:57,662 - Main - INFO - CPE-18
+2019-02-19 10:08:57,662 - Main - INFO - CPE-19
+2019-02-19 10:08:57,662 - Main - INFO - CPE-22-New
+2019-02-19 10:09:05,276 - Main - DEBUG - 
+2019-02-19 10:09:07,479 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:09:07,681 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371aae10> connection opened
+2019-02-19 10:09:08,084 - Main - INFO - CMD>> : request devices device CPE-1 ping
+2019-02-19 10:09:18,506 - Main - INFO - request devices device CPE-1 ping
+result PING 20.20.15.1 (20.20.15.1) 56(84) bytes of data.
+
+--- 20.20.15.1 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:13:17]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:09:18,508 - Main - INFO - CPE-1:False
+2019-02-19 10:09:18,910 - Main - INFO - CMD>> : request devices device CPE-13 ping
+2019-02-19 10:09:29,329 - Main - INFO - request devices device CPE-13 ping
+result PING 20.20.16.13 (20.20.16.13) 56(84) bytes of data.
+
+--- 20.20.16.13 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:13:28]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:09:29,332 - Main - INFO - CPE-13:False
+2019-02-19 10:09:29,736 - Main - INFO - CMD>> : request devices device CPE-131-Manish-4G ping
+2019-02-19 10:09:40,155 - Main - INFO - request devices device CPE-131-Manish-4G ping
+result PING 20.20.15.131 (20.20.15.131) 56(84) bytes of data.
+
+--- 20.20.15.131 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:13:39]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:09:40,157 - Main - INFO - CPE-131-Manish-4G:False
+2019-02-19 10:09:40,560 - Main - INFO - CMD>> : request devices device CPE-14 ping
+2019-02-19 10:09:50,980 - Main - INFO - request devices device CPE-14 ping
+result PING 20.20.16.14 (20.20.16.14) 56(84) bytes of data.
+
+--- 20.20.16.14 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:13:50]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:09:50,982 - Main - INFO - CPE-14:False
+2019-02-19 10:09:51,384 - Main - INFO - CMD>> : request devices device CPE-15 ping
+2019-02-19 10:10:01,808 - Main - INFO - request devices device CPE-15 ping
+result PING 20.20.15.15 (20.20.15.15) 56(84) bytes of data.
+
+--- 20.20.15.15 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:14:01]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:01,811 - Main - INFO - CPE-15:False
+2019-02-19 10:10:02,213 - Main - INFO - CMD>> : request devices device CPE-16 ping
+2019-02-19 10:10:12,632 - Main - INFO - request devices device CPE-16 ping
+result PING 20.20.15.16 (20.20.15.16) 56(84) bytes of data.
+
+--- 20.20.15.16 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:14:12]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:12,634 - Main - INFO - CPE-16:False
+2019-02-19 10:10:13,037 - Main - INFO - CMD>> : request devices device CPE-17-sec ping
+2019-02-19 10:10:13,439 - Main - INFO - request devices device CPE-17-sec ping
+result PING 20.20.16.17 (20.20.16.17) 56(84) bytes of data.
+64 bytes from 20.20.16.17: icmp_seq=1 ttl=58 time=5.10 ms
+
+--- 20.20.16.17 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 5.102/5.102/5.102/0.000 ms
+
+[ok][2019-02-19 06:14:12]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:13,841 - Main - INFO - CMD>> : request devices device CPE-18 ping
+2019-02-19 10:10:14,243 - Main - INFO - request devices device CPE-18 ping
+result PING 20.20.16.18 (20.20.16.18) 56(84) bytes of data.
+64 bytes from 20.20.16.18: icmp_seq=1 ttl=58 time=3.42 ms
+
+--- 20.20.16.18 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.426/3.426/3.426/0.000 ms
+
+[ok][2019-02-19 06:14:13]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:14,645 - Main - INFO - CMD>> : request devices device CPE-19 ping
+2019-02-19 10:10:15,046 - Main - INFO - request devices device CPE-19 ping
+result PING 20.20.16.19 (20.20.16.19) 56(84) bytes of data.
+64 bytes from 20.20.16.19: icmp_seq=1 ttl=60 time=6.19 ms
+
+--- 20.20.16.19 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 6.199/6.199/6.199/0.000 ms
+
+[ok][2019-02-19 06:14:14]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:15,449 - Main - INFO - CMD>> : request devices device CPE-22-New ping
+2019-02-19 10:10:25,867 - Main - INFO - request devices device CPE-22-New ping
+result PING 20.20.15.22 (20.20.15.22) 56(84) bytes of data.
+
+--- 20.20.15.22 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:14:25]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:25,870 - Main - INFO - CPE-22-New:False
+2019-02-19 10:10:25,878 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371aae10> connection closed
+2019-02-19 10:10:25,881 - Main - INFO - starting thread :Thread-3 For device CPE-17-sec
+
+2019-02-19 10:10:25,881 - Main - INFO - starting thread :Thread-4 For device CPE-18
+
+2019-02-19 10:10:25,882 - Main - INFO - starting thread :Thread-5 For device CPE-19
+
+2019-02-19 10:10:30,511 - Main - DEBUG - 
+2019-02-19 10:10:30,513 - Main - DEBUG - 
+2019-02-19 10:10:30,646 - Main - DEBUG - 
+2019-02-19 10:10:32,714 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:10:32,715 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:10:32,847 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:10:32,915 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0d90> connection opened
+2019-02-19 10:10:32,916 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371d6f50> connection opened
+2019-02-19 10:10:33,049 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0c10> connection opened
+2019-02-19 10:10:33,317 - Main - INFO - CMD>> : request devices device CPE-18 ping
+2019-02-19 10:10:33,318 - Main - INFO - CMD>> : request devices device CPE-19 ping
+2019-02-19 10:10:33,450 - Main - INFO - CMD>> : request devices device CPE-17-sec ping
+2019-02-19 10:10:33,720 - Main - INFO - request devices device CPE-19 ping
+result PING 20.20.16.19 (20.20.16.19) 56(84) bytes of data.
+64 bytes from 20.20.16.19: icmp_seq=1 ttl=60 time=10.2 ms
+
+--- 20.20.16.19 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 10.204/10.204/10.204/0.000 ms
+
+[ok][2019-02-19 06:14:33]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:33,721 - Main - INFO - request devices device CPE-18 ping
+result PING 20.20.16.18 (20.20.16.18) 56(84) bytes of data.
+64 bytes from 20.20.16.18: icmp_seq=1 ttl=58 time=4.46 ms
+
+--- 20.20.16.18 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 4.460/4.460/4.460/0.000 ms
+
+[ok][2019-02-19 06:14:33]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:33,785 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371d6f50> connection closed
+2019-02-19 10:10:33,786 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0d90> connection closed
+2019-02-19 10:10:33,852 - Main - INFO - request devices device CPE-17-sec ping
+result PING 20.20.16.17 (20.20.16.17) 56(84) bytes of data.
+64 bytes from 20.20.16.17: icmp_seq=1 ttl=58 time=4.48 ms
+
+--- 20.20.16.17 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 4.488/4.488/4.488/0.000 ms
+
+[ok][2019-02-19 06:14:33]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:10:33,916 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0c10> connection closed
+2019-02-19 10:10:38,381 - Main - DEBUG - 
+2019-02-19 10:10:38,383 - Main - DEBUG - 
+2019-02-19 10:10:38,518 - Main - DEBUG - 
+2019-02-19 10:10:40,584 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:10:40,586 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:10:40,721 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:10:40,785 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0f10> connection opened
+2019-02-19 10:10:40,787 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371d65d0> connection opened
+2019-02-19 10:10:40,922 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0dd0> connection opened
+2019-02-19 10:10:42,786 - Main - DEBUG - ssh admin@20.20.16.18
+admin@20.20.16.18's password: 
+2019-02-19 10:10:42,787 - Main - DEBUG - 
+2019-02-19 10:10:42,789 - Main - DEBUG - ssh admin@20.20.16.19
+admin@20.20.16.19's password: 
+2019-02-19 10:10:42,789 - Main - DEBUG - 
+2019-02-19 10:10:42,924 - Main - DEBUG - ssh admin@20.20.16.17
+admin@20.20.16.17's password: 
+2019-02-19 10:10:42,925 - Main - DEBUG - 
+2019-02-19 10:10:44,789 - Main - DEBUG - doing redispatch
+2019-02-19 10:10:44,791 - Main - DEBUG - doing redispatch
+2019-02-19 10:10:44,927 - Main - DEBUG - doing redispatch
+2019-02-19 10:10:54,505 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371d65d0> connection closed
+2019-02-19 10:10:54,656 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0f10> connection closed
+2019-02-19 10:10:54,792 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d371c0dd0> connection closed
+2019-02-19 10:10:54,792 - Main - DEBUG - Error: unable to start 
+2019-02-19 10:10:54,792 - Main - INFO - <<<<<Vshell modfication result RESULT>>>
+2019-02-19 10:10:54,793 - Main - INFO - 'cpe', 'filename', 'Vshell modification'
+2019-02-19 10:10:54,793 - Main - INFO - ['CPE-1', '/opt/versa/scripts/vshell', 'Ping failed']
+2019-02-19 10:10:54,793 - Main - INFO - ['CPE-22-New', '/opt/versa/scripts/vshell', 'Ping failed']
+2019-02-19 10:10:54,793 - Main - INFO - ['CPE-18', '/opt/versa/scripts/vshell', 'File Modification done']
+2019-02-19 10:10:54,793 - Main - INFO - ['CPE-19', '/opt/versa/scripts/vshell', 'File Modification done']
+2019-02-19 10:10:54,793 - Main - INFO - ['CPE-17-sec', '/opt/versa/scripts/vshell', 'File Modification done']
+2019-02-19 10:10:54,794 - Main - INFO - ['CPE-131-Manish-4G', '/opt/versa/scripts/vshell', 'Ping failed']
+2019-02-19 10:10:54,794 - Main - INFO - ['CPE-13', '/opt/versa/scripts/vshell', 'Ping failed']
+2019-02-19 10:10:54,794 - Main - INFO - ['CPE-16', '/opt/versa/scripts/vshell', 'Ping failed']
+2019-02-19 10:10:54,794 - Main - INFO - ['CPE-14', '/opt/versa/scripts/vshell', 'Ping failed']
+2019-02-19 10:10:54,794 - Main - INFO - ['CPE-15', '/opt/versa/scripts/vshell', 'Ping failed']
+2019-02-19 10:10:54,804 - Main - INFO - DAY :1
+2019-02-19 10:10:54,804 - Main - INFO - Batch : 2
+2019-02-19 10:10:54,804 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-02-19 10:10:54,805 - Main - INFO - CPE-23-New
+2019-02-19 10:10:54,806 - Main - INFO - CPE-24
+2019-02-19 10:10:54,806 - Main - INFO - CPE-25
+2019-02-19 10:10:54,807 - Main - INFO - CPE-29
+2019-02-19 10:10:54,807 - Main - INFO - CPE-32
+2019-02-19 10:10:54,807 - Main - INFO - CPE-34
+2019-02-19 10:10:54,808 - Main - INFO - CPE-39
+2019-02-19 10:10:54,808 - Main - INFO - CPE-4
+2019-02-19 10:10:54,809 - Main - INFO - CPE-40
+2019-02-19 10:10:54,809 - Main - INFO - CPE-41
+2019-02-19 10:10:54,810 - Main - INFO - CPE-46
+2019-02-19 10:11:02,469 - Main - DEBUG - 
+2019-02-19 10:11:04,672 - Main - DEBUG - versa: Administrator@Versa-Dir-BLR-1>
+2019-02-19 10:11:04,874 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7f3d37548f10> connection opened
+2019-02-19 10:11:05,277 - Main - INFO - CMD>> : request devices device CPE-23-New ping
+2019-02-19 10:11:15,697 - Main - INFO - request devices device CPE-23-New ping
+result PING 20.20.15.23 (20.20.15.23) 56(84) bytes of data.
+
+--- 20.20.15.23 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:15:15]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:11:15,700 - Main - INFO - CPE-23-New:False
+2019-02-19 10:11:16,103 - Main - INFO - CMD>> : request devices device CPE-24 ping
+2019-02-19 10:11:26,522 - Main - INFO - request devices device CPE-24 ping
+result PING 20.20.16.24 (20.20.16.24) 56(84) bytes of data.
+
+--- 20.20.16.24 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+[ok][2019-02-19 06:15:25]
+Administrator@Versa-Dir-BLR-1> 
+2019-02-19 10:11:26,524 - Main - INFO - CPE-24:False
+2019-02-19 10:11:26,926 - Main - INFO - CMD>> : request devices device CPE-25 ping
