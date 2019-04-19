@@ -1,0 +1,20 @@
+2019-04-19 14:05:54,562 - Main - INFO - SCRIPT Started
+2019-04-19 14:05:54,562 - Main - INFO - Result  File : C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_05_54_562000//RESULT.csv
+2019-04-19 14:05:54,562 - Main - INFO - LOG FILES Path: C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_05_54_562000/
+2019-04-19 14:06:10,934 - Main - DEBUG - total batches : 9
+2019-04-19 14:06:10,934 - Main - DEBUG - batch List : [1 2 3 4 5 6 7 8 9]
+2019-04-19 14:06:10,934 - Main - DEBUG - DAY :1
+2019-04-19 14:06:10,934 - Main - DEBUG - Batch : 1
+2019-04-19 14:06:10,934 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-04-19 14:06:10,934 - Main - INFO - ADVA-UCPE1
+2019-04-19 14:06:10,934 - Main - INFO - ADVA-UCPE4
+2019-04-19 14:06:10,934 - Main - INFO - CPE-1-Security
+2019-04-19 14:06:10,934 - Main - INFO - CPE-18
+2019-04-19 14:06:13,943 - Main - INFO - starting thread :Thread-1 For device ADVA-UCPE1
+
+2019-04-19 14:06:13,943 - Main - INFO - starting thread :Thread-2 For device ADVA-UCPE4
+
+2019-04-19 14:06:13,943 - Main - INFO - starting thread :Thread-3 For device CPE-1-Security
+
+2019-04-19 14:06:13,943 - Main - INFO - starting thread :Thread-4 For device CPE-18
+

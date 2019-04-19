@@ -1,0 +1,39 @@
+2019-04-19 14:07:58,025 - Main - INFO - SCRIPT Started
+2019-04-19 14:07:58,025 - Main - INFO - Result  File : C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_07_58_025000//RESULT.csv
+2019-04-19 14:07:58,025 - Main - INFO - LOG FILES Path: C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_07_58_025000/
+2019-04-19 14:08:22,194 - Main - INFO - total batches : 1
+2019-04-19 14:08:22,194 - Main - INFO - batch List : [2]
+2019-04-19 14:08:22,210 - Main - INFO - DAY :1
+2019-04-19 14:08:22,210 - Main - INFO - Batch : 2
+2019-04-19 14:08:22,210 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-04-19 14:08:22,210 - Main - INFO - Manish-3260-UCPE
+2019-04-19 14:08:34,221 - Main - DEBUG - 
+2019-04-19 14:08:36,448 - Main - DEBUG - linux: Administrator@Versa-Dir-BLR-1:~$
+2019-04-19 14:08:36,658 - Main - DEBUG - <netmiko.linux.linux_ssh.LinuxSSH object at 0x000000000D57FBA8> connection opened
+2019-04-19 14:08:37,266 - Main - DEBUG - ls -ltr versa-flexvnf-osspack-20190403.bin
+-rwxrwxrwx 1 Administrator versa 157929302 Apr 16 11:05 [0m[01;32mversa-flexvnf-osspack-20190403.bin[0m
+Administrator@Versa-Dir-BLR-1:~$ 
+2019-04-19 14:08:38,092 - Main - DEBUG - 6c9e6e9938058fcf4c6e7ddd0347b07a  versa-flexvnf-osspack-20190403.bin
+2019-04-19 14:08:38,092 - Main - DEBUG - Source File Checksum : 6c9e6e9938058fcf4c6e7ddd0347b07a
+2019-04-19 14:08:38,092 - Main - INFO - starting thread :Thread-3 For device Manish-3260-UCPE
+
+2019-04-19 14:08:47,033 - Main - DEBUG - 
+2019-04-19 14:08:49,256 - Main - DEBUG - linux: Administrator@Versa-Dir-BLR-1:~$
+2019-04-19 14:08:49,457 - Main - DEBUG - <netmiko.linux.linux_ssh.LinuxSSH object at 0x000000000D8C6940> connection opened
+2019-04-19 14:08:51,474 - Main - DEBUG - ssh sathish@20.20.16.102
+The authenticity of host '20.20.16.102 (20.20.16.102)' can't be established.
+ECDSA key fingerprint is 45:75:a9:2e:b7:bd:37:74:b3:10:72:38:63:a3:79:3f.
+Are you sure you want to continue connecting (yes/no)? 
+2019-04-19 14:08:51,476 - Main - DEBUG - 
+2019-04-19 14:08:52,476 - Main - DEBUG - yes
+Failed to add the host to the list of known hosts (/home/Administrator/.ssh/known_hosts).
+sathish@20.20.16.102's password: 
+2019-04-19 14:08:54,484 - Main - DEBUG - doing redispatch
+2019-04-19 14:10:45,463 - Main - DEBUG - Error: unable to start 
+2019-04-19 14:10:45,463 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-04-19 14:10:45,463 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-04-19 14:10:45,463 - Main - INFO - ['Manish-3260-UCPE', 'versa-flexvnf-osspack-20190403.bin']
+2019-04-19 14:10:45,479 - Main - INFO - Time elapsed: 0:02:47.454000
+
+2019-04-19 14:10:45,479 - Main - INFO - Result Stored in C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_07_58_025000//RESULT.csv
+2019-04-19 14:10:45,479 - Main - INFO - LOG FILES Path: C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_07_58_025000/

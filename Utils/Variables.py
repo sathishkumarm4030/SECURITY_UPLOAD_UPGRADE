@@ -47,18 +47,18 @@ def get_vd_details():
     cpe_user = raw_input("Enter Versa CPE Username:\n")
     print "Versa CPE Username:" + cpe_user
     cpe_passwd = getpass.getpass("Enter Versa CPE Password:\n")
-    node_user = raw_input("Enter Versa NODE devices Username:\n")
-    print "Versa NODE devices Username:" + node_user
-    node_passwd = getpass.getpass("Enter Versa NODE Password:\n")
+    # node_user = raw_input("Enter Versa NODE devices Username:\n")
+    # print "Versa NODE devices Username:" + node_user
+    # node_passwd = getpass.getpass("Enter Versa NODE Password:\n")
     # ip = '10.91.116.35'
-    # ldap_user = 'admin'
+    # ldap_user = 'Administrator'
     # ldap_passwd = 'versa123'
     # user = 'Sathish'
     # passwd = 'Jan*1234'
-    # cpe_user = 'admin'
-    # cpe_passwd = 'versa123'
-    # node_user = 'admin'
-    # node_passwd = 'versa123'
+    # cpe_user = 'sathish'
+    # cpe_passwd = 'Jan*1234'
+    node_user = 'admin'
+    node_passwd = 'versa123'
     return {'ip' : ip, 'user': user, 'passwd': passwd, 'ldap_user' : ldap_user,\
             'ldap_passwd' : ldap_passwd, 'cpe_user' : cpe_user, 'cpe_passwd' : cpe_passwd ,\
             'node_user': node_user, 'node_passwd': node_passwd}

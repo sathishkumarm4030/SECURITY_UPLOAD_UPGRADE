@@ -80,7 +80,7 @@ main_logger = setup_logger('Main', 'UpgradeVersaCpes')
 
 
 
-def do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='linux'):
+def do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='versa'):
     global cpe_logger
     netconnect = make_connection(vd_ssh_dict)
     netconnect.write_channel("ssh " + dev_dict["username"] + "@" + dev_dict["ip"] + "\n")
@@ -572,13 +572,14 @@ def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_pas
 
 def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_logger):
     global file_size, source_md5_checksum
+    netconnect.send_command_expect("shell ", strip_prompt=False, strip_command=False, expect_string = "\$|#")
     dest_file_detail = netconnect.send_command_expect("ls -ltr /home/versa/packages/" + filename, strip_prompt=False, strip_command=False)
     cpe_logger.debug(dest_file_detail)
     if "No such file or directory" in dest_file_detail:
         cpe_logger.info(cpe_name + " : "+ dest_file_detail)
         return dest_file_detail
     else:
-        dest_file_size = re.search(cpe_user + " versa (\S+) ", dest_file_detail).group(1)
+        dest_file_size = re.search("\S+ versa (\S+) ", dest_file_detail).group(1)
         cpe_logger.info(cpe_name + " file size: " + dest_file_size)
         dest_file_md5_check = netconnect.send_command_expect("md5sum /home/versa/packages/" + source_file, expect_string = "\$|#")
         cpe_logger.debug(dest_file_md5_check)
@@ -594,11 +595,12 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
         cpe_logger.info(md5_err_info)
         return md5_err_info
     #chmod of bin file
-    cpe_logger.debug(netconnect.send_command_expect("chmod a+x /home/versa/packages/" + filename, strip_prompt=False, strip_command=False, expect_string = "\$|#"))
-    cpe_logger.debug(netconnect.send_command_expect("sudo bash\n", expect_string = ":"))
-    # time.sleep(1)
+    cpe_logger.debug(netconnect.send_command_expect("sudo bash\n", expect_string = ":|\$|#"))
     cpe_logger.debug(netconnect.send_command_expect(cpe_passwd + "\n", expect_string = "\$|#"))
     # time.sleep(1)
+    cpe_logger.debug(netconnect.send_command_expect("chmod a+x /home/versa/packages/" + filename, strip_prompt=False, strip_command=False, expect_string = "\$|#"))
+    # time.sleep(1)
+
     cpe_logger.debug(netconnect.send_command_expect("exit\n", expect_string = "\$|#"))
     # time.sleep(1)
     sec_exec_logs_file = "/tmp/packtrack_" + currtime
@@ -629,6 +631,8 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
         time.sleep(5)
     bin_process = netconnect.send_command_expect("cat " + sec_exec_logs_file, strip_prompt=False, strip_command=False, expect_string = "\$|#")
     cpe_logger.debug(bin_process)
+    if 'All packages are already at latest version' in bin_process:
+        return filename + " Patch execution already done. All packages are already at latest version"
     if 'error:' in bin_process or 'Error' in bin_process:
         return filename + " Patch execuiton failed. Error Found in exec Log"
     else:

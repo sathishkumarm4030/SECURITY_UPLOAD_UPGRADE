@@ -1,0 +1,137 @@
+2019-04-19 14:05:21,176 - Manish-3260-UCPE - DEBUG - [sathish@Manish-3260-UCPE ~] # 
+2019-04-19 14:05:21,586 - Manish-3260-UCPE - DEBUG - [root@Manish-3260-UCPE ~] # 
+2019-04-19 14:05:22,188 - Manish-3260-UCPE - DEBUG - Jan*1234: command not found
+[root@Manish-3260-UCPE ~] # 
+2019-04-19 14:05:22,589 - Manish-3260-UCPE - DEBUG - cat /opt/versa/scripts/vshell
+#!/bin/bash
+
+#
+# Versa shell for remote users. By default all remote
+# users will land on ConfD CLI prompt. Users belonging
+# to admin group can access bash from CLI
+#
+# VERSA_USER_GROUP environment variable is set by PAM
+# module after authentication is done. This variable
+# provides which group does the user belong to for RBAC
+# purposes.
+# SSH_CLIENT, SSH_CONNECTION and SSH_TTY will be set by OpenSSH
+#
+
+source /opt/versa/scripts/utils.sh
+
+readonly REMOTE_IP=$(echo "$SSH_CLIENT" | awk '{print $1}')
+readonly REMOTE_PORT=$(echo "$SSH_CLIENT" | awk '{print $2}')
+readonly SQLITE=/usr/bin/sqlite3
+readonly DBFILE=/var/lib/vs/db/.pamdb
+readonly LOGFILE=/var/log/versa/versa-aaa.log
+
+delete_user() {
+    if [[ -z $VERSA_USER_GROUP ]]; then
+        return
+    fi
+    local DEL="DELETE FROM aaausers WHERE username='$USER' AND remoteport='$REMOTE_PORT';"
+    $SQLITE $DBFILE "$DEL" >& /dev/null
+    if [[ $? -eq 0 ]]; then
+        log_info "Cleared $USER ($REMOTE_IP/$REMOTE_PORT/$TTY) from PAM DB"
+    else
+        log_err "Failed to clear $USER info"
+    fi
+}
+
+
+update_pamdb() {
+    local TTY=${SSH_TTY#/dev/}
+    TTY=${TTY//\/}
+    local ADD="INSERT INTO aaausers(username,remoteport,remoteip,tty,nacmgroup)
+               VALUES('$USER','$REMOTE_PORT','$REMOTE_IP','$TTY','$VERSA_USER_GROUP');"
+
+    $SQLITE $DBFILE "$ADD" >& /dev/null
+    if [[ $? -eq 0 ]]; then
+        log_info "Added $USER ($REMOTE_IP/$REMOTE_PORT/$TTY) to PAM DB"
+    else
+        log_err "Failed to add $USER info"
+    fi
+}
+
+# -- Main --
+
+log_file $LOGFILE
+
+trap delete_user SIGHUP SIGINT SIGTERM EXIT
+
+if [[ -n $VERSA_USER_GROUP ]]; then
+    update_pamdb
+    $CONFD_CLI -u $USER -g $VERSA_USER_GROUP
+else
+    $CONFD_CLI -u $USER
+fi
+[root@Manish-3260-UCPE ~] # 
+2019-04-19 14:05:22,994 - Manish-3260-UCPE - DEBUG - grep 'if \[\[ "$1" == "-c" \]\]; then shift;eval "$@ 
+";exit $?; fi ' /opt/versa/scripts/vshell || sed -i  '/ Main /a\ if [[ "$1" == " 
+-c" ]]; then shift;eval "$@";exit $?; fi ' /opt/versa/scripts/vshell
+[root@Manish-3260-UCPE ~] # 
+2019-04-19 14:05:23,426 - Manish-3260-UCPE - DEBUG - cat /opt/versa/scripts/vshell
+#!/bin/bash
+
+#
+# Versa shell for remote users. By default all remote
+# users will land on ConfD CLI prompt. Users belonging
+# to admin group can access bash from CLI
+#
+# VERSA_USER_GROUP environment variable is set by PAM
+# module after authentication is done. This variable
+# provides which group does the user belong to for RBAC
+# purposes.
+# SSH_CLIENT, SSH_CONNECTION and SSH_TTY will be set by OpenSSH
+#
+
+source /opt/versa/scripts/utils.sh
+
+readonly REMOTE_IP=$(echo "$SSH_CLIENT" | awk '{print $1}')
+readonly REMOTE_PORT=$(echo "$SSH_CLIENT" | awk '{print $2}')
+readonly SQLITE=/usr/bin/sqlite3
+readonly DBFILE=/var/lib/vs/db/.pamdb
+readonly LOGFILE=/var/log/versa/versa-aaa.log
+
+delete_user() {
+    if [[ -z $VERSA_USER_GROUP ]]; then
+        return
+    fi
+    local DEL="DELETE FROM aaausers WHERE username='$USER' AND remoteport='$REMOTE_PORT';"
+    $SQLITE $DBFILE "$DEL" >& /dev/null
+    if [[ $? -eq 0 ]]; then
+        log_info "Cleared $USER ($REMOTE_IP/$REMOTE_PORT/$TTY) from PAM DB"
+    else
+        log_err "Failed to clear $USER info"
+    fi
+}
+
+
+update_pamdb() {
+    local TTY=${SSH_TTY#/dev/}
+    TTY=${TTY//\/}
+    local ADD="INSERT INTO aaausers(username,remoteport,remoteip,tty,nacmgroup)
+               VALUES('$USER','$REMOTE_PORT','$REMOTE_IP','$TTY','$VERSA_USER_GROUP');"
+
+    $SQLITE $DBFILE "$ADD" >& /dev/null
+    if [[ $? -eq 0 ]]; then
+        log_info "Added $USER ($REMOTE_IP/$REMOTE_PORT/$TTY) to PAM DB"
+    else
+        log_err "Failed to add $USER info"
+    fi
+}
+
+# -- Main --
+ if [[ "$1" == "-c" ]]; then shift;eval "$@";exit $?; fi 
+
+log_file $LOGFILE
+
+trap delete_user SIGHUP SIGINT SIGTERM EXIT
+
+if [[ -n $VERSA_USER_GROUP ]]; then
+    update_pamdb
+    $CONFD_CLI -u $USER -g $VERSA_USER_GROUP
+else
+    $CONFD_CLI -u $USER
+fi
+[root@Manish-3260-UCPE ~] # 

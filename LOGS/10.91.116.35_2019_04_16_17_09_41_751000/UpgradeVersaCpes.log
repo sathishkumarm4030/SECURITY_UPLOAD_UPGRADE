@@ -1,0 +1,18 @@
+2019-04-16 17:09:41,750 - Main - INFO - SCRIPT Started
+2019-04-16 17:09:41,750 - Main - INFO - Result  File : C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_16_17_09_41_751000//RESULT.csv
+2019-04-16 17:09:41,750 - Main - INFO - LOG FILES Path: C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_16_17_09_41_751000/
+2019-04-16 17:10:19,605 - Main - INFO - total batches : 1
+2019-04-16 17:10:19,605 - Main - INFO - batch List : [2]
+2019-04-16 17:10:19,625 - Main - INFO - DAY :1
+2019-04-16 17:10:19,625 - Main - INFO - Batch : 2
+2019-04-16 17:10:19,625 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-04-16 17:10:19,625 - Main - INFO - Manish-3260-UCPE
+2019-04-16 17:10:31,640 - Main - DEBUG - 
+2019-04-16 17:10:33,842 - Main - DEBUG - linux: admin@Versa-Dir-BLR-1:~$
+2019-04-16 17:10:34,059 - Main - DEBUG - <netmiko.linux.linux_ssh.LinuxSSH object at 0x000000000DA85B00> connection opened
+2019-04-16 17:10:34,691 - Main - DEBUG - ls -ltr versa-flexvnf-osspack-20190403.bin
+ls: cannot access versa-flexvnf-osspack-20190403.bin: No such file or directory
+admin@Versa-Dir-BLR-1:~$ 
+2019-04-16 17:10:34,691 - Main - INFO - ls -ltr versa-flexvnf-osspack-20190403.bin
+ls: cannot access versa-flexvnf-osspack-20190403.bin: No such file or directory
+admin@Versa-Dir-BLR-1:~$ 
