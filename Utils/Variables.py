@@ -57,8 +57,8 @@ def get_vd_details():
     # passwd = 'Jan*1234'
     # cpe_user = 'sathish'
     # cpe_passwd = 'Jan*1234'
-    node_user = 'admin'
-    node_passwd = 'versa123'
+    #node_user = 'admin'
+    #node_passwd = 'versa123'
     return {'ip' : ip, 'user': user, 'passwd': passwd, 'ldap_user' : ldap_user,\
             'ldap_passwd' : ldap_passwd, 'cpe_user' : cpe_user, 'cpe_passwd' : cpe_passwd ,\
             'node_user': node_user, 'node_passwd': node_passwd}
