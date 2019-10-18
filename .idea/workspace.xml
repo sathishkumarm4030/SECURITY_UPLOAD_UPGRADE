@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="031e8bc5-2fed-4e7d-b416-a3a2b35f4442" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10.91.116.35_Vcpe_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/10.91.116.35_Vcpe_List.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utils/Commands_bk_oct18.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Utils/Commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Commands.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/Variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Variables.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +17,36 @@
       <file leaf-file-name="File_transfer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/File_transfer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="306">
               <caret line="18" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Commands.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/Commands.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="286" column="33" selection-start-line="286" selection-start-column="33" selection-end-line="286" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Commands_bk_oct18.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/Commands_bk_oct18.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="versa.py" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Python27/Lib/site-packages/netmiko-2.2.2-py2.7.egg!/netmiko/versa/versa.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -28,59 +54,8 @@
       <file leaf-file-name="Sec_patch_upgrade.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sec_patch_upgrade.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Commands.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Utils/Commands.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="633" column="8" selection-start-line="633" selection-start-column="8" selection-end-line="633" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manish-3260-UCPE.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_14_07_58_025000/Manish-3260-UCPE.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="81" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Variables.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utils/Variables.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="48" column="63" lean-forward="true" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CPE-17-sec.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_02_19_10_08_54_054452/CPE-17-sec.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1451" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CPE-19.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_02_19_10_08_54_054452/CPE-19.log">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="Manish-3260-UCPE.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_14_01_31_274000/Manish-3260-UCPE.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="13" />
+            <state relative-caret-position="408">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -88,8 +63,20 @@
       <file leaf-file-name="Modify_vshell.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modify_vshell.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
+            <state relative-caret-position="408">
               <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Variables.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Utils/Variables.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,7 +114,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,32 +121,11 @@
               <item name="SECURITY_UPLOAD_UPGRADE" type="b2602c69:ProjectViewProjectNode" />
               <item name="SECURITY_UPLOAD_UPGRADE" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SECURITY_UPLOAD_UPGRADE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SECURITY_UPLOAD_UPGRADE" type="462c0819:PsiDirectoryNode" />
-              <item name="LOGS" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SECURITY_UPLOAD_UPGRADE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SECURITY_UPLOAD_UPGRADE" type="462c0819:PsiDirectoryNode" />
-              <item name="LOGS" type="462c0819:PsiDirectoryNode" />
-              <item name="10.91.116.35_2019_04_19_14_07_58_025000" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SECURITY_UPLOAD_UPGRADE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SECURITY_UPLOAD_UPGRADE" type="462c0819:PsiDirectoryNode" />
-              <item name="LOGS" type="462c0819:PsiDirectoryNode" />
-              <item name="10.91.116.35_2019_04_19_14_15_35_772000" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SECURITY_UPLOAD_UPGRADE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SECURITY_UPLOAD_UPGRADE" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -169,6 +134,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE\Utils" />
       <recent name="C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE" />
     </key>
   </component>
@@ -184,7 +150,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Sec_patch_upgrade">
+  <component name="RunManager" selected="Python.File_transfer">
     <configuration name="File_transfer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SECURITY_UPLOAD_UPGRADE" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -246,8 +212,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Sec_patch_upgrade" />
         <item itemvalue="Python.File_transfer" />
+        <item itemvalue="Python.Sec_patch_upgrade" />
         <item itemvalue="Python.Modify_vshell" />
       </list>
     </recent_temporary>
@@ -267,26 +233,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2788104" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.41461477" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.7816092" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.32899022" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.14006515" />
+      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.50689656" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.6448276" />
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2788104" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.14006515" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Python Console" order="3" weight="0.32899022" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -298,6 +273,61 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_14_07_58_025000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="81" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_15_03_36_496000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="23" column="97" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_14_49_28_167000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="58" column="30" lean-forward="true" selection-start-line="23" selection-start-column="53" selection-end-line="58" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Commands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Variables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="56" column="23" lean-forward="true" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modify_vshell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/File_transfer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/File_transfer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -383,16 +413,158 @@
     <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_02_19_10_08_54_054452/CPE-19.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/File_transfer.py">
+    <entry file="file://$PROJECT_DIR$/Modify_vshell.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="408">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_14_15_35_772000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="18" column="162" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="162" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_14_07_58_025000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="81" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Python27/Lib/site-packages/netmiko-2.2.2-py2.7.egg!/netmiko/versa/versa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sec_patch_upgrade.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Variables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/File_transfer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Commands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3689">
+          <caret line="280" column="55" lean-forward="true" selection-start-line="280" selection-start-column="55" selection-end-line="280" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/File_transfer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sec_patch_upgrade.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_16_17_26_07_935000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="196" column="1" selection-start-line="196" selection-start-column="1" selection-end-line="196" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_16_17_12_27_703000/UpgradeVersaCpes.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Variables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Commands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15844">
+          <caret line="951" column="44" selection-start-line="951" selection-start-column="44" selection-end-line="951" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_16_17_12_27_703000/UpgradeVersaCpes.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_16_17_12_27_703000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="136" column="4" selection-start-line="136" selection-start-column="4" selection-end-line="136" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_16_17_26_07_935000/UpgradeVersaCpes.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_16_17_26_07_935000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="196" column="1" selection-start-line="196" selection-start-column="1" selection-end-line="196" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_13_53_27_474000/UpgradeVersaCpes.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_04_19_14_01_31_274000/Manish-3260-UCPE.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_02_19_10_08_54_054452/CPE-17-sec.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1451" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LOGS/10.91.116.35_2019_02_19_10_08_54_054452/CPE-19.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Modify_vshell.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
+        <state relative-caret-position="408">
           <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
         </state>
       </provider>
@@ -413,25 +585,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Sec_patch_upgrade.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        <state relative-caret-position="408">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Commands_bk_oct18.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Commands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="286" column="33" selection-start-line="286" selection-start-column="33" selection-end-line="286" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/File_transfer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/Variables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="48" column="63" lean-forward="true" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
+        <state relative-caret-position="102">
+          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/Commands.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="633" column="8" selection-start-line="633" selection-start-column="8" selection-end-line="633" selection-end-column="8" />
         </state>
       </provider>
     </entry>

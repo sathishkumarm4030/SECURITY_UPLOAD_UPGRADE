@@ -279,8 +279,8 @@ def build_csv(device_list):
     #         writer.writerow(item)
     # csv_data_read = pd.read_csv(logfile_dir + 'Vcpe_list_raw.csv')
     with open(cpe_list_file_name, 'w') as file_writer1:
-        data_header = ['device_name_in_vd', 'ip', 'day', 'batch', 'org', 'type', 'softwareVersion', 'ping-status',
-                       'sync-status', 'serialNo', 'model', 'existing-packageName']
+        data_header = ['device_name_in_vd', 'ip', 'day', 'batch', 'type', 'softwareVersion', 'ping-status',
+                       'sync-status']
         writer = csv.writer(file_writer1)
         writer.writerow(data_header)
         for item in device_list:
@@ -312,22 +312,21 @@ def get_device_list(oper_type='patch_upgrade'):
             device_list.append(i['ipAddress'])
             device_list.append(day)
             device_list.append(batch)
-            device_list.append(i['ownerOrg'])
+            # device_list.append(i['ownerOrg'])
             device_list.append(i['type'])
             device_list.append(i['softwareVersion'])
             device_list.append(i['ping-status'])
             device_list.append(i['sync-status'])
-            try:
-                if i['Hardware'] != "":
-                    device_list.append(i['Hardware']['serialNo'])
-                    device_list.append(i['Hardware']['model'])
-                    device_list.append(i['Hardware']['packageName'])
-            except KeyError as ke:
-                print i['name']
-                print "Hardware Info NIL"
-                continue
-            # print count, day, batch
-            count += 1
+            # try:
+            #     if i['Hardware']!="":
+            #         device_list.append(i['Hardware']['serialNo'])
+            #         device_list.append(i['Hardware']['model'])
+            #         device_list.append(i['Hardware']['packageName'])
+            # except KeyError as ke:
+            #     print i['name']
+            #     print "Hardware Info NIL"
+            #print count, day, batch
+            count +=1
             devices_list.append(device_list)
     # print devices_list
     return devices_list

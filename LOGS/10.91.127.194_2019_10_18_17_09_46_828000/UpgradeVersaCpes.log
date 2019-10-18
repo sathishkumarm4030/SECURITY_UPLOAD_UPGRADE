@@ -1,0 +1,254 @@
+2019-10-18 17:09:46,829 - Main - INFO - SCRIPT Started
+2019-10-18 17:09:46,831 - Main - INFO - Result  File : C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_10_18_17_09_46_828000//RESULT.csv
+2019-10-18 17:09:46,832 - Main - INFO - LOG FILES Path: C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_10_18_17_09_46_828000/
+2019-10-18 17:14:38,232 - Main - DEBUG - total batches : 9
+2019-10-18 17:14:38,233 - Main - DEBUG - batch List : [1 2 3 4 5 6 7 8 9]
+2019-10-18 17:14:38,239 - Main - DEBUG - DAY :1
+2019-10-18 17:14:38,240 - Main - DEBUG - Batch : 1
+2019-10-18 17:14:38,240 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:14:38,240 - Main - INFO - CPE-14
+2019-10-18 17:14:38,242 - Main - INFO - CPE-50
+2019-10-18 17:14:38,243 - Main - INFO - CPE1-SIN-HYBRID
+2019-10-18 17:14:38,243 - Main - INFO - CPE16-SIN-MPLSONLY
+2019-10-18 17:14:41,247 - Main - INFO - starting thread :Thread-1 For device CPE-14
+
+2019-10-18 17:14:41,250 - Main - INFO - starting thread :Thread-2 For device CPE-50
+
+2019-10-18 17:14:41,253 - Main - INFO - starting thread :Thread-3 For device CPE1-SIN-HYBRID
+
+2019-10-18 17:14:41,256 - Main - INFO - starting thread :Thread-4 For device CPE16-SIN-MPLSONLY
+
+2019-10-18 17:14:45,170 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:45,170 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:45,170 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:45,171 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:45,171 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:45,173 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:45,206 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:45,207 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:45,293 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:14:45,295 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:14:45,296 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:14:45,319 - Main - DEBUG - DAY :1
+2019-10-18 17:14:45,319 - Main - DEBUG - Batch : 2
+2019-10-18 17:14:45,319 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:14:45,322 - Main - INFO - CPE19
+2019-10-18 17:14:45,323 - Main - INFO - CPE19-IPC00172
+2019-10-18 17:14:45,325 - Main - INFO - CPE20
+2019-10-18 17:14:45,326 - Main - INFO - CPE22HKG-HYBRID
+2019-10-18 17:14:45,328 - Main - INFO - CPE23-SIN-HYBRID
+2019-10-18 17:14:48,332 - Main - INFO - starting thread :Thread-13 For device CPE19
+
+2019-10-18 17:14:48,335 - Main - INFO - starting thread :Thread-14 For device CPE19-IPC00172
+
+2019-10-18 17:14:48,338 - Main - INFO - starting thread :Thread-15 For device CPE20
+
+2019-10-18 17:14:48,342 - Main - INFO - starting thread :Thread-16 For device CPE22HKG-HYBRID
+
+2019-10-18 17:14:48,348 - Main - INFO - starting thread :Thread-17 For device CPE23-SIN-HYBRID
+
+2019-10-18 17:14:52,322 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:52,322 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:52,322 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:52,322 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:52,338 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:52,338 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:52,342 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:52,344 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:52,351 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:52,352 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:52,371 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:14:52,371 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:14:52,372 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:14:52,401 - Main - DEBUG - DAY :1
+2019-10-18 17:14:52,401 - Main - DEBUG - Batch : 3
+2019-10-18 17:14:52,401 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:14:52,404 - Main - INFO - CPE25-Performance-DUT
+2019-10-18 17:14:52,407 - Main - INFO - CPE26-HKG2-DUAL-HYB-IPC00194
+2019-10-18 17:14:52,407 - Main - INFO - CPE27-HKG2-SINGLE-CPE-DUAL-INTERNET18
+2019-10-18 17:14:52,408 - Main - INFO - CPE31-Performance-810
+2019-10-18 17:14:52,410 - Main - INFO - CPE4-SIN-HYBRID
+2019-10-18 17:14:55,413 - Main - INFO - starting thread :Thread-28 For device CPE25-Performance-DUT
+
+2019-10-18 17:14:55,417 - Main - INFO - starting thread :Thread-29 For device CPE26-HKG2-DUAL-HYB-IPC00194
+
+2019-10-18 17:14:55,420 - Main - INFO - starting thread :Thread-30 For device CPE27-HKG2-SINGLE-CPE-DUAL-INTERNET18
+
+2019-10-18 17:14:55,424 - Main - INFO - starting thread :Thread-31 For device CPE31-Performance-810
+
+2019-10-18 17:14:55,428 - Main - INFO - starting thread :Thread-32 For device CPE4-SIN-HYBRID
+
+2019-10-18 17:14:59,387 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:59,387 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:59,388 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:59,388 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:59,392 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:59,392 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:59,392 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:14:59,394 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:59,394 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:59,394 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:14:59,509 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:14:59,510 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:14:59,512 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:14:59,532 - Main - DEBUG - DAY :1
+2019-10-18 17:14:59,532 - Main - DEBUG - Batch : 4
+2019-10-18 17:14:59,532 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:14:59,536 - Main - INFO - CPE45-VoIP
+2019-10-18 17:14:59,538 - Main - INFO - CPE5
+2019-10-18 17:14:59,539 - Main - INFO - CPE6
+2019-10-18 17:14:59,540 - Main - INFO - CPE7
+2019-10-18 17:14:59,545 - Main - INFO - CPE8
+2019-10-18 17:15:02,551 - Main - INFO - starting thread :Thread-43 For device CPE45-VoIP
+
+2019-10-18 17:15:02,552 - Main - INFO - starting thread :Thread-44 For device CPE5
+
+2019-10-18 17:15:02,556 - Main - INFO - starting thread :Thread-45 For device CPE6
+
+2019-10-18 17:15:02,559 - Main - INFO - starting thread :Thread-46 For device CPE7
+
+2019-10-18 17:15:02,563 - Main - INFO - starting thread :Thread-47 For device CPE8
+
+2019-10-18 17:15:06,512 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:06,512 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:06,513 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:06,513 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:06,513 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:06,513 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:06,533 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:06,533 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:06,535 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:06,535 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:06,553 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:15:06,553 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:15:06,555 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:15:06,578 - Main - DEBUG - DAY :1
+2019-10-18 17:15:06,578 - Main - DEBUG - Batch : 5
+2019-10-18 17:15:06,578 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:15:06,582 - Main - INFO - NV-CGW11-N6-SIN
+2019-10-18 17:15:06,584 - Main - INFO - NV-CGW12-N6-SIN
+2019-10-18 17:15:06,585 - Main - INFO - NV-CGW21-N5-LON
+2019-10-18 17:15:06,588 - Main - INFO - NV-CGW22-N5-LON
+2019-10-18 17:15:06,589 - Main - INFO - NV-FW01-N1-HKG
+2019-10-18 17:15:09,592 - Main - INFO - starting thread :Thread-58 For device NV-CGW11-N6-SIN
+
+2019-10-18 17:15:09,594 - Main - INFO - starting thread :Thread-59 For device NV-CGW12-N6-SIN
+
+2019-10-18 17:15:09,595 - Main - INFO - starting thread :Thread-60 For device NV-CGW21-N5-LON
+
+2019-10-18 17:15:09,596 - Main - INFO - starting thread :Thread-61 For device NV-CGW22-N5-LON
+
+2019-10-18 17:15:09,601 - Main - INFO - starting thread :Thread-62 For device NV-FW01-N1-HKG
+
+2019-10-18 17:15:13,598 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:13,598 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:13,599 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:13,599 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:13,602 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:13,602 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:13,602 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:13,605 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:13,605 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:13,607 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:13,618 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:15:13,618 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:15:13,619 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:15:13,641 - Main - DEBUG - DAY :1
+2019-10-18 17:15:13,641 - Main - DEBUG - Batch : 6
+2019-10-18 17:15:13,641 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:15:13,644 - Main - INFO - NV-FW01-N6-SIN
+2019-10-18 17:15:13,644 - Main - INFO - NV-FW02-N1-HKG
+2019-10-18 17:15:13,647 - Main - INFO - NV-FW02-N6-SIN
+2019-10-18 17:15:13,648 - Main - INFO - NV-GW-BR-LON
+2019-10-18 17:15:13,648 - Main - INFO - NV-GW01-N1-HKG
+2019-10-18 17:15:16,653 - Main - INFO - starting thread :Thread-73 For device NV-FW01-N6-SIN
+
+2019-10-18 17:15:16,655 - Main - INFO - starting thread :Thread-74 For device NV-FW02-N1-HKG
+
+2019-10-18 17:15:16,657 - Main - INFO - starting thread :Thread-75 For device NV-FW02-N6-SIN
+
+2019-10-18 17:15:16,661 - Main - INFO - starting thread :Thread-76 For device NV-GW-BR-LON
+
+2019-10-18 17:15:16,667 - Main - INFO - starting thread :Thread-77 For device NV-GW01-N1-HKG
+
+2019-10-18 17:15:20,638 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:20,638 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:20,638 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:20,640 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:20,645 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:20,650 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:20,650 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:20,653 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:20,654 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:20,654 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:20,778 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:15:20,779 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:15:20,779 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:15:20,801 - Main - DEBUG - DAY :1
+2019-10-18 17:15:20,802 - Main - DEBUG - Batch : 7
+2019-10-18 17:15:20,802 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:15:20,805 - Main - INFO - NV-GW01-N5-LON
+2019-10-18 17:15:20,806 - Main - INFO - NV-GW01-N6-SIN
+2019-10-18 17:15:20,809 - Main - INFO - NV-GW02-N1-HKG
+2019-10-18 17:15:20,811 - Main - INFO - NV-GW02-N5-LON
+2019-10-18 17:15:20,812 - Main - INFO - NV-GW02-N6-SIN
+2019-10-18 17:15:23,818 - Main - INFO - starting thread :Thread-88 For device NV-GW01-N5-LON
+
+2019-10-18 17:15:23,819 - Main - INFO - starting thread :Thread-89 For device NV-GW01-N6-SIN
+
+2019-10-18 17:15:23,823 - Main - INFO - starting thread :Thread-90 For device NV-GW02-N1-HKG
+
+2019-10-18 17:15:23,828 - Main - INFO - starting thread :Thread-91 For device NV-GW02-N5-LON
+
+2019-10-18 17:15:23,832 - Main - INFO - starting thread :Thread-92 For device NV-GW02-N6-SIN
+
+2019-10-18 17:15:27,788 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:27,788 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:27,789 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:27,789 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:27,851 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:27,852 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:27,852 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:27,858 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:27,861 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:27,865 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:27,907 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:15:27,907 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:15:27,908 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:15:27,915 - Main - DEBUG - DAY :1
+2019-10-18 17:15:27,915 - Main - DEBUG - Batch : 8
+2019-10-18 17:15:27,915 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:15:27,917 - Main - INFO - NV-WC01-N1-HKG
+2019-10-18 17:15:27,917 - Main - INFO - NV-WC01-N5-LON
+2019-10-18 17:15:27,918 - Main - INFO - NV-WC01-N6-SIN
+2019-10-18 17:15:27,918 - Main - INFO - NV-WC02-N1-HKG
+2019-10-18 17:15:27,920 - Main - INFO - NV-WC02-N5-LON
+2019-10-18 17:15:30,924 - Main - INFO - starting thread :Thread-103 For device NV-WC01-N1-HKG
+
+2019-10-18 17:15:30,927 - Main - INFO - starting thread :Thread-104 For device NV-WC01-N5-LON
+
+2019-10-18 17:15:30,930 - Main - INFO - starting thread :Thread-105 For device NV-WC01-N6-SIN
+
+2019-10-18 17:15:30,934 - Main - INFO - starting thread :Thread-106 For device NV-WC02-N1-HKG
+
+2019-10-18 17:15:30,937 - Main - INFO - starting thread :Thread-107 For device NV-WC02-N5-LON
+
+2019-10-18 17:15:34,954 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:34,954 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:34,961 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:34,961 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:34,983 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:34,983 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:34,990 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:34,990 - Main - DEBUG - Router prompt not found: u'Automated@VDir-BLR-NEW-01>'
+2019-10-18 17:15:34,996 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:35,000 - Main - DEBUG - Not able to enter Versa Director CLI. please Check
+2019-10-18 17:15:35,082 - Main - DEBUG - Error: unable to start 
+2019-10-18 17:15:35,082 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-10-18 17:15:35,082 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-10-18 17:15:35,095 - Main - DEBUG - DAY :1
+2019-10-18 17:15:35,095 - Main - DEBUG - Batch : 9
+2019-10-18 17:15:35,095 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-10-18 17:15:35,098 - Main - INFO - NV-WC02-N6-SIN
+2019-10-18 17:15:35,098 - Main - INFO - UCPE3
+2019-10-18 17:15:35,099 - Main - INFO - UCPE7

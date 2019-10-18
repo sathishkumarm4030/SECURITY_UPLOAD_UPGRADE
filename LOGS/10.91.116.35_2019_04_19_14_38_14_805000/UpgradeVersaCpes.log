@@ -1,44 +1,0 @@
-2019-04-19 14:38:14,805 - Main - INFO - SCRIPT Started
-2019-04-19 14:38:14,805 - Main - INFO - Result  File : C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_38_14_805000//RESULT.csv
-2019-04-19 14:38:14,805 - Main - INFO - LOG FILES Path: C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_38_14_805000/
-2019-04-19 14:38:32,072 - Main - DEBUG - total batches : 1
-2019-04-19 14:38:32,072 - Main - DEBUG - batch List : [2]
-2019-04-19 14:38:32,072 - Main - DEBUG - DAY :1
-2019-04-19 14:38:32,072 - Main - DEBUG - Batch : 2
-2019-04-19 14:38:32,072 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
-2019-04-19 14:38:32,088 - Main - INFO - Manish-3260-UCPE
-2019-04-19 14:38:35,099 - Main - INFO - starting thread :Thread-1 For device Manish-3260-UCPE
-
-2019-04-19 14:38:44,344 - Main - DEBUG - 
-2019-04-19 14:38:46,546 - Main - DEBUG - linux: Administrator@Versa-Dir-BLR-1:~$
-2019-04-19 14:38:46,749 - Main - DEBUG - <netmiko.linux.linux_ssh.LinuxSSH object at 0x000000000C8AFC88> connection opened
-2019-04-19 14:38:47,352 - Main - DEBUG - ls -ltr versa-flexvnf-osspack-20190403.bin
--rwxrwxrwx 1 Administrator versa 157929302 Apr 16 11:05 [0m[01;32mversa-flexvnf-osspack-20190403.bin[0m
-Administrator@Versa-Dir-BLR-1:~$ 
-2019-04-19 14:38:48,364 - Main - DEBUG - 6c9e6e9938058fcf4c6e7ddd0347b07a  versa-flexvnf-osspack-20190403.bin
-2019-04-19 14:38:48,364 - Main - DEBUG - Source File Checksum : 6c9e6e9938058fcf4c6e7ddd0347b07a
-2019-04-19 14:38:49,365 - Main - DEBUG - CMD>> : rsync -v versa-flexvnf-osspack-20190403.bin sathish@20.20.16.102:/home/versa/packages --progress
-2019-04-19 14:38:49,365 - Main - DEBUG - None
-2019-04-19 14:38:50,367 - Main - DEBUG - rsync -v versa-flexvnf-osspack-20190403.bin sat hish@20.20.16.102:/home/versa/packages --progress
-The authenticity of host '20.20.16.102 (20.20.16.102)' can't be established.
-ECDSA key fingerprint is 45:75:a9:2e:b7:bd:37:74:b3:10:72:38:63:a3:79:3f.
-Are you sure you want to continue connecting (yes/no)? 
-2019-04-19 14:38:53,371 - Main - DEBUG - yes
-Failed to add the host to the list of known hosts (/home/Administrator/.ssh/known_hosts).
-sathish@20.20.16.102's password: 
-2019-04-19 14:39:14,128 - Main - DEBUG - 
-versa-flexvnf-osspack-20190403.bin
-         32,768   0%    0.00kB/s    0:00:00        4,128,768   2%    3.87MB/s    0:00:38       10,452,992   6%    4.94MB/s    0:00:29       20,676,608  13%    6.52MB/s    0:00:20       32,997,376  20%    7.80MB/s    0:00:15       44,269,568  28%    9.52MB/s    0:00:11       56,459,264  35%   10.92MB/s    0:00:09       66,420,736  42%   10.86MB/s    0:00:08       74,317,824  47%    9.81MB/s    0:00:08       76,677,120  48%    7.57MB/s    0:00:10       79,036,416  50%    5.23MB/s    0:00:14       83,230,720  52%    3.89MB/s    0:00:18       93,061,120  58%    4.34MB/s    0:00:14      104,562,688  66%    6.56MB/s    0:00:07      113,082,368  71%    8.09MB/s    0:00:05      122,159,104  77%    9.27MB/s    0:00:03      132,808,704  84%    9.45MB/s    0:00:02      143,785,984  91%    9.31MB/s    0:00:01      154,632,192  97%    9.86MB/s    0:00:00      157,929,302 100%    7.97MB/s    0:00:18 (xfr#1, to-chk=0/1)
-
-sent 157,967,963 bytes  received 35 bytes  6,447,673.39 bytes/sec
-total size is 157,929,302  speedup is 1.00
-Administrator@Versa-Dir-BLR-1:~$ 
-2019-04-19 14:39:16,131 - Main - DEBUG - Manish-3260-UCPE : file transfer Success
-2019-04-19 14:39:16,131 - Main - DEBUG - Error: unable to start 
-2019-04-19 14:39:16,131 - Main - INFO - <<<<<Security patch execution RESULT>>>
-2019-04-19 14:39:16,131 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
-2019-04-19 14:39:16,131 - Main - INFO - ['Manish-3260-UCPE', 'versa-flexvnf-osspack-20190403.bin', u'File Transfer Success : Transfered size 157929302']
-2019-04-19 14:39:16,131 - Main - INFO - Time elapsed: 0:01:01.327000
-
-2019-04-19 14:39:16,131 - Main - INFO - Result Stored in C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_38_14_805000//RESULT.csv
-2019-04-19 14:39:16,131 - Main - INFO - LOG FILES Path: C:\Softwares_mine\SECURITY_UPLOAD_UPGRADE/LOGS/10.91.116.35_2019_04_19_14_38_14_805000/
