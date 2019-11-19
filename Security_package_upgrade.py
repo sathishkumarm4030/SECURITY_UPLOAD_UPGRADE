@@ -22,7 +22,7 @@ def main():
     main_logger.info("SCRIPT Started")
     main_logger.info("Result  File : " + logfile_dir + "/RESULT.csv")
     main_logger.info("LOG FILES Path: " + logfile_dir)
-    DO_vshell_Modify()
+    DO_Sec_package_Upgrade()
     main_logger.info("Time elapsed: {}\n".format(datetime.now() - start_time))
     main_logger.info("Result Stored in " + logfile_dir + "/RESULT.csv")
     main_logger.info("LOG FILES Path: " + logfile_dir)

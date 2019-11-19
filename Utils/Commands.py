@@ -18,6 +18,7 @@ import paramiko
 import socket
 import re
 import threading
+import os
 
 
 urllib3.disable_warnings()
@@ -28,11 +29,14 @@ parsed_dict = {}
 cpe_logger = ""
 cpe_logger_dict ={}
 devices_list = []
-currtime = str(datetime.now())
+# currtime = str(datetime.now())
+# currtime =  currtime.replace(" ", "_").replace(":", "_").replace("-", "_").replace(".", "_")
+currtime = str(datetime.now().replace(microsecond=0))
 currtime =  currtime.replace(" ", "_").replace(":", "_").replace("-", "_").replace(".", "_")
 up_pkg_dict = {}
 batch = ""
-cpe_list_file_name = vd_dict['ip'] + '_Vcpe_List.csv'
+# cpe_list_file_name = vd_dict['ip'] + '_Vcpe_List.csv'
+cpe_list_file_name = vd_dict['ip'] + '_Vcpe_List_' + currtime + '.csv'
 curr_prompt = ""
 source_file = ""
 upload_report = []
@@ -305,6 +309,9 @@ def get_device_list(oper_type='patch_upgrade'):
             if oper_type == 'file_transfer':
                 if count%5 == 0:
                     batch += 1
+            if oper_type == 'sec_package':
+                if count%15 == 0:
+                    batch += 1
             else:
                 if count%11 == 0:
                     batch += 1
@@ -329,6 +336,54 @@ def get_device_list(oper_type='patch_upgrade'):
             # print count, day, batch
             count += 1
             devices_list.append(device_list)
+    # print devices_list
+    return devices_list
+
+
+def get_device_list_only_branch(oper_type='patch_upgrade'):
+    global batch
+    response1 = requests.get(vdurl + appliance_url,
+                             auth=(user, passwd),
+                             headers=headers3,
+                             verify=False)
+    data1 = response1.json()
+    count, day, batch = 1, 1, 1
+    # print data1
+    for i in data1['versanms.ApplianceStatusResult']['appliances']:
+        device_list = []
+        if i['type']=='branch':
+            if i['ownerOrg'] != 'Colt':
+                if i['ping-status'] == 'REACHABLE':
+                    if oper_type == 'file_transfer':
+                        if count%5 == 0:
+                            batch += 1
+                    if oper_type == 'sec_package':
+                        if count%15 == 0:
+                            batch += 1
+                    else:
+                        if count%11 == 0:
+                            batch += 1
+                    device_list.append(i['name'])
+                    device_list.append(i['ipAddress'])
+                    device_list.append(day)
+                    device_list.append(batch)
+                    device_list.append(i['ownerOrg'])
+                    device_list.append(i['type'])
+                    device_list.append(i['softwareVersion'])
+                    device_list.append(i['ping-status'])
+                    device_list.append(i['sync-status'])
+                    try:
+                        if i['Hardware'] != "":
+                            device_list.append(i['Hardware']['serialNo'])
+                            device_list.append(i['Hardware']['model'])
+                            device_list.append(i['Hardware']['packageName'])
+                    except KeyError as ke:
+                        print i['name']
+                        print "Hardware Info NIL"
+                        continue
+                    # print count, day, batch
+                    count += 1
+                    devices_list.append(device_list)
     # print devices_list
     return devices_list
 
@@ -660,6 +715,23 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
     #         return str(sshexc)
 
 
+def req_install_security_package(netconnect, cpe_name, cpe_user, cpe_passwd, cpe_logger, sec_pkg_vers_number):
+    netconnect.send_command_expect("shell ", strip_prompt=False, strip_command=False, expect_string = "\$|#")
+    cpe_logger.debug(netconnect.send_command_expect("sudo su\n", expect_string = ":|\$|#"))
+    # cpe_logger.debug(netconnect.send_command_expect(cpe_passwd + "\n", expect_string = "\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("mv /home/versa/packages/versa-security-package-* /opt/versa/etc/spack/downloads/", strip_prompt=False, strip_command=False, expect_string = "\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("chown versa:versa /opt/versa/etc/spack/downloads/*", strip_prompt=False, strip_command=False, expect_string="\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("chmod 664 /opt/versa/etc/spack/downloads/*", strip_prompt=False, strip_command=False, expect_string="\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("sed -i 's/premium/sample/g' /opt/versa/etc/spack/.flavor", strip_prompt=False, strip_command=False, expect_string="\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("exit\n", expect_string = "\$|#"))
+    cpe_logger.debug(netconnect.send_command_expect("exit\n", expect_string=">"))
+    cpe_logger.debug(netconnect.send_command_expect("show security security-package information | tab", strip_prompt=False, strip_command=False, expect_string="\]"))
+    cpe_logger.debug(netconnect.send_command_expect("request security security-package install version number " + sec_pkg_vers_number, strip_prompt=False, strip_command=False, expect_string="\]"))
+    # cpe_logger.debug(netconnect.send_command_expect("request security security-package install status", strip_prompt=False, strip_command=False, expect_string="\]"))
+    # time.sleep(5)
+    # cpe_logger.debug(netconnect.send_command_expect("request security security-package install status", strip_prompt=False, strip_command=False, expect_string="\]"))
+    return "req sec package install command executed"
+
 def run_thread_for_modify(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     global device_report, cpe_list
     cpe_logger = setup_logger(cpe_name, cpe_name)
@@ -714,6 +786,15 @@ def run_thread_for_upgrade(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     close_connection(netconnect)
     return
 
+def run_thread_for_package_upgrade(cpe_name, cpe_user, cpe_passwd, dev_dict, i, sec_pkg_vers_number):
+    global source_file, device_report, cpe_list
+    cpe_logger = setup_logger(cpe_name, cpe_name)
+    cpe_logger_dict[cpe_name] = cpe_logger
+    netconnect = make_connection(dev_dict)
+    sec_result = req_install_security_package(netconnect, cpe_name, cpe_user, cpe_passwd, cpe_logger, sec_pkg_vers_number)
+    device_report[cpe_name] += [sec_result]
+    close_connection(netconnect)
+    return
 
 def Modify_vshell_file():
     global File_tr_Success, File_tr_Failed, upload_report, result_list
@@ -789,7 +870,7 @@ def Modify_vshell_file():
             # thread.start_new_thread(run_thread_for_upgrade, (cpe_name, dev_dict, i))
             # print " starting thread for " + str(i)
     except:
-        main_logger.debug("Error: unable to start ")
+        main_logger.info("Error: unable to start Thread")
         # sec_result = run_thread_for_upgrade(cpe_name, dev_dict, i)
         # device_report[cpe_name] += [sec_result]
 
@@ -867,6 +948,56 @@ def sec_patch_upgrade_devices():
 
     main_logger.info("<<<<<Security patch execution RESULT>>>")
     main_logger.info("'cpe', 'filename', 'patch_upgrade_status'")
+    for dev, sec_patch_result in device_report.iteritems():
+        main_logger.info(sec_patch_result)
+    for dev_key in device_report:
+        result_list.append(device_report[dev_key])
+
+def sec_package_upgrade_devices(sec_pkg_vers_number):
+    global source_file, upload_report, result_list
+    global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file
+    global device_report
+    cpe_list_print()
+    time.sleep(2)
+    device_report = {}
+    try:
+        threads = []
+        for i, rows in cpe_list.iterrows():
+            cpe_name = cpe_list.ix[i, 'device_name_in_vd']
+            cpe_ip = cpe_list.ix[i, 'ip']
+            cpe_type = cpe_list.ix[i, 'type']
+            if cpe_type == 'branch':
+                dev_username = vd_dict['cpe_user']
+                dev_passwd =  vd_dict['cpe_passwd']
+            else:
+                dev_username = vd_dict['node_user']
+                dev_passwd =  vd_dict['node_passwd']
+
+            dev_dict = {
+                "device_type": 'versa', "ip": cpe_ip, \
+                "username": dev_username, "password": dev_passwd, \
+                "port": '22'
+            }
+            device_report[cpe_name] = [cpe_name, source_file]
+            thrd_objs = threading.Thread(target=run_thread_for_package_upgrade, args=(cpe_name, dev_username, dev_passwd, dev_dict, i, sec_pkg_vers_number))
+            threads.append(thrd_objs)
+        for th in threads:
+            main_logger.info("starting thread :" + str(th.name) + " For device " + th._Thread__args[0] + "\n")
+            # print "DEVICE NAME: " + th._Thread__args[0]
+            th.start()
+
+        #print threading.activeCount()
+
+        for th in threads:
+            th.join()
+
+        for th in threads:
+            th.exit()
+    except:
+        # main_logger.debug("Error: unable to start Thread for " + cpe_name)
+        main_logger.debug("CPENAME:>>" + cpe_name)
+    main_logger.info("<<<<<Security package execution RESULT>>>")
+    main_logger.info("'cpe', 'filename', 'package_upgrade_status'")
     for dev, sec_patch_result in device_report.iteritems():
         main_logger.info(sec_patch_result)
     for dev_key in device_report:
@@ -958,6 +1089,27 @@ def DO_Sec_patch_Upgrade():
         main_logger.info("Batch : " + str(singlebatch))
         sec_patch_upgrade_devices()
     write_result(result_list, 'sec_patch_execuiton')
+
+def DO_Sec_package_Upgrade():
+    global source_file, result_list
+    global cpe_list, batch
+    sec_pkg_vers_number = raw_input("\n\nEnter Security package version number:\n")
+    # sec_pkg_vers_number = "1640"
+    source_file = sec_pkg_vers_number
+    build_csv(get_device_list_only_branch(oper_type="sec_package"))
+    time.sleep(5)
+    raw_input("Edit " + cpe_list_file_name + " and save and Press enter to continue")
+    csv_data_read = pd.read_csv(cpe_list_file_name)
+    batches = max(csv_data_read['batch'])
+    start_batch = min(csv_data_read['batch'])
+    for singlebatch in range(int(start_batch), int(batches)+1):
+        cpe_list = read_csv_file(cpe_list_file_name, day, singlebatch)
+        if len(cpe_list) == 0:
+            continue
+        main_logger.info("DAY :" + str(day))
+        main_logger.info("Batch : " + str(singlebatch))
+        sec_package_upgrade_devices(sec_pkg_vers_number)
+    write_result(result_list, 'sec_package_execuiton')
 
 def DO_vshell_Modify():
     global source_file, result_list

@@ -1,0 +1,21 @@
+2019-11-05 17:09:54,555 - Main - INFO - SCRIPT Started
+2019-11-05 17:09:54,556 - Main - INFO - Result  File : /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_05_17_09_54//RESULT.csv
+2019-11-05 17:09:54,556 - Main - INFO - LOG FILES Path: /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_05_17_09_54/
+2019-11-05 17:11:55,991 - Main - INFO - DAY :1
+2019-11-05 17:11:55,991 - Main - INFO - Batch : 1
+2019-11-05 17:11:55,992 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-11-05 17:11:55,993 - Main - INFO - CPE25-Performance-DUT
+2019-11-05 17:11:58,996 - Main - INFO - starting thread :Thread-1 For device CPE25-Performance-DUT
+
+2019-11-05 17:12:04,569 - Main - DEBUG - 
+2019-11-05 17:12:06,772 - Main - DEBUG - versa: smurugesan2@CPE25-Performance-DUT-cli>
+2019-11-05 17:12:06,973 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7efe56cc8dd0> connection opened
+2019-11-05 17:12:11,655 - Main - DEBUG - <netmiko.versa.versa_ssh.VersaSSH object at 0x7efe56cc8dd0> connection closed
+2019-11-05 17:12:11,655 - Main - DEBUG - Error: unable to start 
+2019-11-05 17:12:11,655 - Main - INFO - <<<<<Security package execution RESULT>>>
+2019-11-05 17:12:11,655 - Main - INFO - 'cpe', 'filename', 'package_upgrade_status'
+2019-11-05 17:12:11,655 - Main - INFO - ['CPE25-Performance-DUT', '1650', 'req sec package install command executed']
+2019-11-05 17:12:11,656 - Main - INFO - Time elapsed: 0:02:17.100511
+
+2019-11-05 17:12:11,656 - Main - INFO - Result Stored in /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_05_17_09_54//RESULT.csv
+2019-11-05 17:12:11,656 - Main - INFO - LOG FILES Path: /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_05_17_09_54/

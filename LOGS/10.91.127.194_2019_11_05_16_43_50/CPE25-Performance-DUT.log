@@ -1,0 +1,37 @@
+2019-11-05 16:45:38,897 - CPE25-Performance-DUT - DEBUG - [root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-05 16:45:39,298 - CPE25-Performance-DUT - DEBUG - mv /home/versa/packages/versa-security-p 
+ackage-* /opt/versa/etc/spack/downloads/
+mv: cannot stat '/home/versa/packages/versa-security-package-*': No such file or directory
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-05 16:45:39,700 - CPE25-Performance-DUT - DEBUG - chown versa:versa /opt/versa/etc/spack/d 
+ownloads/*
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-05 16:45:40,101 - CPE25-Performance-DUT - DEBUG - chmod 664 /opt/versa/etc/spack/downloads 
+/*
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-05 16:45:40,503 - CPE25-Performance-DUT - DEBUG - sed -i 's/premium/sample/g' /opt/versa/e 
+tc/spack/.flavor
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-05 16:45:40,904 - CPE25-Performance-DUT - DEBUG - exit
+[smurugesan2@CPE25-Performance-DUT ~] # 
+2019-11-05 16:45:41,306 - CPE25-Performance-DUT - DEBUG - logout
+[ok][2019-11-05 11:09:54]
+2019-11-05 16:45:41,907 - CPE25-Performance-DUT - DEBUG - show security security-package information | tab
+         API                          UPDATE  
+VERSION  VERSION  FLAVOR  DATE        TYPE    
+----------------------------------------------
+1640     11       sample  2019-06-28  full    
+
+[ok][2019-11-05 11:09:55]
+smurugesan2@CPE25-Performance-DUT-cli> 
+2019-11-05 16:45:42,309 - CPE25-Performance-DUT - DEBUG - #request security security-package install version number 1659
+[ok][2019-11-05 11:09:55]
+smurugesan2@CPE25-Performance-DUT-cli> 
+2019-11-05 16:45:42,911 - CPE25-Performance-DUT - DEBUG - request security security-package install  status
+install-status [Error installing security package version 1659 on control plane(Not downloaded)]
+[ok][2019-11-05 11:09:56]
+smurugesan2@CPE25-Performance-DUT-cli> 
+2019-11-05 16:45:48,514 - CPE25-Performance-DUT - DEBUG - request security security-package install  status
+install-status [Error installing security package version 1659 on control plane(Not downloaded)]
+[ok][2019-11-05 11:10:02]
+smurugesan2@CPE25-Performance-DUT-cli> 
