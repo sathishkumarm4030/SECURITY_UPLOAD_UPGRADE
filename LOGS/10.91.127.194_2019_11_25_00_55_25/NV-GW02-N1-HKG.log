@@ -1,0 +1,46 @@
+2019-11-25 00:57:01,593 - NV-GW02-N1-HKG - DEBUG - ls -ltr /home/versa/packages/versa-flexvnf-ossp 
+ack-20190913.bin
+-rwxr-x---+ 1 aaauser versa 156775958 Nov 24 10:55 [0m[01;32m/home/versa/packages/versa-flexvnf-osspack-20190913.bin[0m
+[smurugesan2@NV-GW02-N1-HKG ~] # 
+2019-11-25 00:57:01,593 - NV-GW02-N1-HKG - INFO - NV-GW02-N1-HKG file size: 156775958
+2019-11-25 00:57:02,596 - NV-GW02-N1-HKG - DEBUG - n
+f55121ff3e6f11492bfb2d712eed1ff9  /home/versa/packages/versa-flexvnf-osspack-20190913.bin
+[smurugesan2@NV-GW02-N1-HKG ~] # 
+2019-11-25 00:57:02,596 - NV-GW02-N1-HKG - DEBUG - NV-GW02-N1-HKG File Checksum : f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:57:03,999 - NV-GW02-N1-HKG - DEBUG - [root@NV-GW02-N1-HKG ~] # 
+2019-11-25 00:57:04,601 - NV-GW02-N1-HKG - DEBUG - Jan*1234: command not found
+[root@NV-GW02-N1-HKG ~] # 
+2019-11-25 00:57:05,002 - NV-GW02-N1-HKG - DEBUG - chmod a+x /home/versa/packages/versa-flexvnf-osspack-2 
+0190913.bin
+[root@NV-GW02-N1-HKG ~] # 
+2019-11-25 00:57:05,403 - NV-GW02-N1-HKG - DEBUG - exit
+[smurugesan2@NV-GW02-N1-HKG ~] # 
+2019-11-25 00:57:05,403 - NV-GW02-N1-HKG - DEBUG - Security pack execution Logfile : /tmp/packtrack_2019_11_25_00_55_25
+2019-11-25 00:57:05,403 - NV-GW02-N1-HKG - DEBUG - sudo /home/versa/packages/versa-flexvnf-osspack-20190913.bin > /tmp/packtrack_2019_11_25_00_55_25 2>&1 &
+2019-11-25 00:57:05,805 - NV-GW02-N1-HKG - DEBUG - &
+[1] 2771
+[smurugesan2@NV-GW02-N1-HKG ~] # 
+2019-11-25 00:57:11,210 - NV-GW02-N1-HKG - DEBUG - ..............2771[smurugesan2@NV-GW02-N1-HKG~]#..........
+2019-11-25 00:57:12,012 - NV-GW02-N1-HKG - DEBUG - cat /tmp/packtrack_2019_11_25_00_55_25
+Verifying archive integrity... All good.
+Uncompressing OSSPACK     0%     2%     5%     8%    10%    13%    16%    18%    21%    24%    26%    29%    32%    34%    37%    40%    42%    45%    48%    50%    53%    56%    58%    61%    64%    66%    69%    72%    74%    77%    80%    82%    85%    88%    90%    93%    96%    98%  100%  
+
+ => Checking if packages are pre-installed
+    Skipping apparmor
+    Skipping augeas-lenses
+    Skipping bash
+    Skipping bind9-host
+    Skipping binutils
+    Skipping busybox-initramfs
+    Skipping busybox-static
+    Skipping bzip2
+    Skipping ca-certificates
+    Skipping dbus
+    Skipping dnsutils
+    Skipping file
+    Skipping fontconfig-config
+    Skipping fonts-dejavu-core
+    Skipping gcc-4.8-base
+    Skipping gdb-minimal
+    Skipping gettext-base
+[smurugesan2@NV-GW02-N1-HKG ~] # 

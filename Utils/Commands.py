@@ -19,6 +19,7 @@ import socket
 import re
 import threading
 import os
+import subprocess
 
 
 urllib3.disable_warnings()
@@ -214,6 +215,23 @@ def config_template(text, params1):
     txt = template.safe_substitute(params1)
     return txt
 
+def make_connection_return_conn_fail(a_device):
+    global main_logger, curr_prompt
+    try:
+        net_connect = ConnectHandler(**a_device)
+        output = net_connect.read_channel()
+        main_logger.debug(output)
+    except ssh_exceptions as Va:
+        main_logger.info(Va)
+        # main_logger.debug("Not able to enter Device. please Check")
+        return "CONN_ERR: " + str(Va)
+    #net_connect.enable()
+    time.sleep(2)
+    main_logger.debug("{}: {}".format(net_connect.device_type, net_connect.find_prompt()))
+    curr_prompt = net_connect.find_prompt()
+    # print str(net_connect) + " connection opened"
+    main_logger.debug(str(net_connect) + " connection opened")
+    return net_connect
 
 def make_connection(a_device):
     global main_logger, curr_prompt
@@ -307,7 +325,7 @@ def get_device_list(oper_type='patch_upgrade'):
         # if i['ownerOrg'] != 'Colt':
         if i['ping-status'] == 'REACHABLE':
             if oper_type == 'file_transfer':
-                if count%5 == 0:
+                if count%15 == 0:
                     batch += 1
             if oper_type == 'sec_package':
                 if count%15 == 0:
@@ -489,21 +507,17 @@ def check_device_status(nc, device_name):
 
 def file_check(source_file):
     global file_size, source_md5_checksum
-    netconnect = make_connection(vd_ssh_dict)
-    source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, strip_prompt=False, strip_command=False)
+    source_file_detail = subprocess.check_output("ls -ltr /tmp/" + source_file + " | awk '{print $5}'", shell=True, stderr=subprocess.STDOUT).rstrip()
     # source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, expect_string = "\$|#")
     main_logger.debug(source_file_detail)
     if "No such file or directory" in source_file_detail:
         main_logger.info(source_file_detail)
         exit()
     else:
-        # source_file_detail_list = source_file_detail.split(" ")
-        # main_logger.debug("File size is " + source_file_detail_list[6])
-        # file_size = source_file_detail_list[6]
-        file_size = re.search(vd_dict['ldap_user'] + " versa (\S+) ", source_file_detail).group(1)
-        source_md5_check = netconnect.send_command_expect("md5sum " + source_file, expect_string = "\$|#")
+        file_size = source_file_detail
+        source_md5_check = subprocess.check_output("md5sum /tmp/" + source_file + " | awk '{print $1}'", shell=True, stderr=subprocess.STDOUT).rstrip()
         main_logger.debug(source_md5_check)
-        source_md5_checksum = re.search("(\S+)  " + source_file, source_md5_check).group(1)
+        source_md5_checksum = source_md5_check
         main_logger.debug("Source File Checksum : " + source_md5_checksum)
 
 #source_file, cpe_ip, dev_username, dev_passwd, i
@@ -527,99 +541,40 @@ def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_pas
     global cpe_list, device_report
     File_tr_Success = "File Transfer Success : "
     File_tr_Failed = "File Transfer Failed : "
-
-    netconnect = make_connection(vd_ssh_dict)
-    source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, strip_prompt=False, strip_command=False)
-    # source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, expect_string = "\$")
-    main_logger.debug(source_file_detail)
-
-
-    if "No such file or directory" in source_file_detail:
-        main_logger.info(source_file_detail)
-        exit()
-    else:
-        # source_file_detail_list = source_file_detail.split(" ")
-        # main_logger.debug("File size is " + source_file_detail_list[6])
-        # file_size = source_file_detail_list[6]
-        file_size = re.search(vd_dict['ldap_user'] + " versa (\S+) ", source_file_detail).group(1)
-        source_md5_check = netconnect.send_command_expect("md5sum " + source_file, expect_string = "\$|#")
-        main_logger.debug(source_md5_check)
-        source_md5_checksum = re.search("(\S+)  " + source_file, source_md5_check).group(1)
-        main_logger.debug("Source File Checksum : " + source_md5_checksum)
-    time.sleep(1)
+    dev_dict = {
+        "device_type": 'versa', "ip": dest_ip, \
+        "username": dev_user, "password": dev_passwd, \
+        "port": '22'
+    }
+    check_ssh = make_connection_return_conn_fail(dev_dict)
+    if isinstance(check_ssh, str) and "CONN_ERR:" in check_ssh:
+        result = File_tr_Failed + check_ssh
+        device_report[dest_name] = [dest_name, source_file, result]
+        return
     try:
-        cmd = "rsync -v " + source_file + " " + dev_user + "@" + dest_ip + ":/home/versa/packages --progress"
+        cmd = "rsync -v -e 'sshpass -p " + dev_passwd + " ssh -o StrictHostKeyChecking=no' /tmp/" + source_file + " " + dev_user + "@" + dest_ip + ":/home/versa/packages --progress"
         main_logger.debug("CMD>> : " + cmd)
-        main_logger.debug(netconnect.write_channel(cmd + "\n"))
-        time.sleep(1)
-        output1 = netconnect.read_until_prompt_or_pattern(pattern='password:|yes')
+        output1 = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
         main_logger.debug(output1)
-        time.sleep(1)
-    except ssh_exceptions as sshexc:
-        main_logger.debug(sshexc)
-        main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
-        close_connection(netconnect)
-        result = File_tr_Failed + str(sshexc)
-    if 'assword:' in output1:
-        netconnect.write_channel(dev_passwd+"\n")
-        time.sleep(2)
-        try:
-            output2 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000000)
-            main_logger.debug(output2)
-            op_copy = output2[:]
-            transfered_Size = re.search("total size is (\S+) ", op_copy.replace(",", "")).group(1)
-            if file_size==transfered_Size:
-                # main_logger.debug(op_copy)
-                main_logger.debug(dest_name + " : file transfer Success")
-                result = File_tr_Success + "Transfered size " + transfered_Size
-            else:
-                # main_logger.debug(op_copy)
-                main_logger.debug("file transfer Failed")
-                close_connection(netconnect)
-                result = File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
-        except ssh_exceptions as sshexc:
-            main_logger.debug(sshexc)
-            main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
-            close_connection(netconnect)
-            result = File_tr_Failed + str(sshexc)
-    elif 'yes' in output1:
-        try:
-            #print "am in yes condition"
-            netconnect.write_channel("yes\n")
-            time.sleep(2)
-            output3 = netconnect.read_until_prompt_or_pattern(pattern='password:')
-            main_logger.debug(output3)
-            time.sleep(1)
-            netconnect.write_channel(dev_passwd + "\n")
-            time.sleep(2)
-        except ssh_exceptions as sshexc:
-            main_logger.debug(sshexc)
-            main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
-            close_connection(netconnect)
-            result = File_tr_Failed + str(sshexc)
-        try:
-            output4 = netconnect.read_until_prompt_or_pattern(pattern='speedup is', max_loops=5000000)
-            main_logger.debug(output4)
-            time.sleep(2)
-            op_copy = output4[:]
-            transfered_Size = re.search("total size is (\S+) ", op_copy.replace(",", "")).group(1)
-            if file_size==transfered_Size:
-                #main_logger.debug(op_copy)
-                main_logger.debug(dest_name + " : file transfer Success")
-                result = File_tr_Success + "Transfered size " + transfered_Size
-            else:
-                #main_logger.debug(op_copy)
-                main_logger.debug(dest_name + " : file transfer Failed")
-                close_connection(netconnect)
-                result = File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
-        except ssh_exceptions as sshexc:
-            main_logger.debug(sshexc)
-            main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
-            close_connection(netconnect)
-            result = File_tr_Failed + str(sshexc)
+    except subprocess.CalledProcessError as cperr:
+        main_logger.debug(cperr)
+        result = "CalledProcessError: "+ str(cperr)
+        device_report[dest_name] = [dest_name, source_file, result]
+        return
+    if 'speedup is' in output1:
+        output2 = output1
+        op_copy = output2[:]
+        transfered_Size = re.search("total size is (\S+) ", op_copy.replace(",", "")).group(1)
+        if file_size==transfered_Size:
+            # main_logger.debug(op_copy)
+            main_logger.debug(dest_name + " : file transfer Success")
+            result = File_tr_Success + "Transfered size " + transfered_Size
+        else:
+            # main_logger.debug(op_copy)
+            main_logger.debug("file transfer Failed")
+            result = File_tr_Failed + " expected=" + file_size + " actual_transfered=" + transfered_Size
     else:
         main_logger.debug("VD to CPE " + dest_ip + " file transfer Failed.")
-        close_connection(netconnect)
         result =  File_tr_Failed + output1
     device_report[dest_name] = [dest_name, source_file, result]
     return
@@ -627,7 +582,7 @@ def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_pas
 
 
 def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_logger):
-    global file_size, source_md5_checksum
+    global file_size, source_md5_checksum, oss_patch_version
     netconnect.send_command_expect("shell ", strip_prompt=False, strip_command=False, expect_string = "\$|#")
     dest_file_detail = netconnect.send_command_expect("ls -ltr /home/versa/packages/" + filename, strip_prompt=False, strip_command=False)
     cpe_logger.debug(dest_file_detail)
@@ -692,27 +647,14 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
     if 'error:' in bin_process or 'Error' in bin_process:
         return filename + " Patch execuiton failed. Error Found in exec Log"
     else:
-        return filename + " Patch Execution success"
-    # output_exp_pswd = netconnect.read_until_prompt_or_pattern(pattern='password for', max_loops=50)
-    # cpe_logger.info(output_exp_pswd)
-    # if 'password for admin:' in output_exp_pswd:
-    #     netconnect.write_channel(vd_dict['cpe_passwd']+ "\n")
-    #     time.sleep(1)
-    #     try:
-    #
-    #         output2 = netconnect.read_until_prompt_or_pattern(pattern='\\:\\~\\$', max_loops=5000000)
-    #         cpe_logger.info(output2)
-    #         if "Error" in output2:
-    #             err_info = "Error in security pacakge execution"
-    #             cpe_logger.info(err_info)
-    #             return err_info
-    #         else:
-    #             succ_info = "Success : security pacakges updated succesfully using bin file : " + filename
-    #             cpe_logger.info(succ_info)
-    #             return succ_info
-    #     except ssh_exceptions as sshexc:
-    #         cpe_logger.info(sshexc)
-    #         return str(sshexc)
+        netconnect.send_command_expect("exit", strip_prompt=False,
+                                                     strip_command=False, expect_string=">")
+        result = netconnect.send_command_expect("show security osspack info | tab", strip_prompt=False,
+                                                     strip_command=False, expect_string=">")
+        if oss_patch_version in result:
+            return filename + " Patch Execution success"
+        else:
+            return filename + " Patch execuiton success. Version not found in show security oss pack info | tab"
 
 
 def req_install_security_package(netconnect, cpe_name, cpe_user, cpe_passwd, cpe_logger, sec_pkg_vers_number):
@@ -736,27 +678,10 @@ def run_thread_for_modify(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     global device_report, cpe_list
     cpe_logger = setup_logger(cpe_name, cpe_name)
     cpe_logger_dict[cpe_name] = cpe_logger
-    #check_ping
-    # vd_cli_nc = make_connection_to_cli(vd_ssh_dict)
-    # check_result = request_ping(vd_cli_nc, cpe_name)
-    # close_connection(vd_cli_nc)
-    # print check_result
-    # if check_result == 'False':
-    #     device_report[cpe_name] += ["Ping failed"]
-    #     cpe_list = cpe_list.drop(index=i)
-    #     cpe_logger.info(cpe_name + ":" + check_result)
-    #     return
-    netconnect = do_cross_connection(cpe_name, vd_ssh_dict, dev_dict, redispatch_type='versa')
-    if netconnect == "VD to CPE " + dev_dict["ip"] + "ssh Failed.":
-        device_report[cpe_name] += ["VD -> CPE " + dev_dict["ip"] + " SSH connection failed"]
-        cpe_list = cpe_list.drop(index=i)
-        cpe_logger.info(cpe_name + " : VD -> CPE " + dev_dict[
-            "ip"] + " SSH connection failed. please check IP & reachabilty from VD")
-        return
-    if netconnect == "Redispatch not Success":
-        device_report[cpe_name] += ["CPE Redispatch failed"]
-        cpe_list = cpe_list.drop(index=i)
-        cpe_logger.info(cpe_name + " : CPE Redispatch failed")
+    netconnect = make_connection_return_conn_fail(dev_dict)
+    if isinstance(netconnect, str) and "CONN_ERR:" in netconnect:
+        result = netconnect
+        device_report[cpe_name] = [cpe_name, source_file, result]
         return
     sec_result = modify_vshell(netconnect, cpe_name, cpe_user, cpe_passwd, source_file, cpe_logger)
     device_report[cpe_name] += [sec_result]
@@ -768,17 +693,10 @@ def run_thread_for_upgrade(cpe_name, cpe_user, cpe_passwd, dev_dict, i):
     global device_report, cpe_list
     cpe_logger = setup_logger(cpe_name, cpe_name)
     cpe_logger_dict[cpe_name] = cpe_logger
-    netconnect = do_cross_connection(cpe_name, vd_ssh_dict, dev_dict)
-    if netconnect == "VD to CPE " + dev_dict["ip"] + "ssh Failed.":
-        device_report[cpe_name] += ["VD -> CPE " + dev_dict["ip"] + " SSH connection failed"]
-        cpe_list = cpe_list.drop(index=i)
-        cpe_logger.info(cpe_name + " : VD -> CPE " + dev_dict[
-            "ip"] + " SSH connection failed. please check IP & reachabilty from VD")
-        return
-    if netconnect == "Redispatch not Success":
-        device_report[cpe_name] += ["CPE Redispatch failed"]
-        cpe_list = cpe_list.drop(index=i)
-        cpe_logger.info(cpe_name + " : CPE Redispatch failed")
+    netconnect = make_connection_return_conn_fail(dev_dict)
+    if isinstance(netconnect, str) and "CONN_ERR:" in netconnect:
+        result = netconnect
+        device_report[cpe_name] += [result]
         return
     sec_result = sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, source_file, cpe_logger)
     device_report[cpe_name] += [sec_result]
@@ -790,7 +708,11 @@ def run_thread_for_package_upgrade(cpe_name, cpe_user, cpe_passwd, dev_dict, i, 
     global source_file, device_report, cpe_list
     cpe_logger = setup_logger(cpe_name, cpe_name)
     cpe_logger_dict[cpe_name] = cpe_logger
-    netconnect = make_connection(dev_dict)
+    netconnect = make_connection_return_conn_fail(dev_dict)
+    if isinstance(netconnect, str) and "CONN_ERR:" in netconnect:
+        result = netconnect
+        device_report[cpe_name] += [result]
+        return
     sec_result = req_install_security_package(netconnect, cpe_name, cpe_user, cpe_passwd, cpe_logger, sec_pkg_vers_number)
     device_report[cpe_name] += [sec_result]
     close_connection(netconnect)
@@ -842,7 +764,7 @@ def Modify_vshell_file():
                 dev_passwd =  vd_dict['node_passwd']
 
             dev_dict = {
-                "device_type": 'linux', "ip": cpe_ip, \
+                "device_type": 'versa', "ip": cpe_ip, \
                 "username": dev_username, "password": dev_passwd, \
                 "port": '22'
             }
@@ -891,15 +813,6 @@ def sec_patch_upgrade_devices():
     time.sleep(2)
     device_report = {}
     file_check(source_file)
-    # for i, rows in cpe_list.iterrows():
-    #     cpe_name = cpe_list.ix[i, 'device_name_in_vd']
-    #     cpe_ip = cpe_list.ix[i, 'ip']
-    #     dev_dict = {
-    #         "device_type": 'linux', "ip": cpe_ip, \
-    #         "username": vd_dict['cpe_user'], "password": vd_dict['cpe_passwd'], \
-    #         "port": '22'
-    #     }
-    #     device_report[cpe_name] = [cpe_name, source_file]
     try:
         threads = []
         for i, rows in cpe_list.iterrows():
@@ -914,7 +827,7 @@ def sec_patch_upgrade_devices():
                 dev_passwd =  vd_dict['node_passwd']
 
             dev_dict = {
-                "device_type": 'linux', "ip": cpe_ip, \
+                "device_type": 'versa', "ip": cpe_ip, \
                 "username": dev_username, "password": dev_passwd, \
                 "port": '22'
             }
@@ -1005,10 +918,26 @@ def sec_package_upgrade_devices(sec_pkg_vers_number):
 
 def package_upload_to_devices():
     global File_tr_Success, File_tr_Failed, upload_report, result_list, device_report
-    global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file
+    global report, cpe_list, parsed_dict, cpe_logger, cpe_logger_dict, source_file, file_size
     cpe_list_print()
     time.sleep(2)
     device_report = {}
+    source_file_detail = subprocess.check_output("ls -ltr /tmp/" + source_file + " | awk '{print $5}'", shell=True, stderr=subprocess.STDOUT).rstrip()
+    # source_file_detail = netconnect.send_command_expect("ls -ltr " + source_file, expect_string = "\$")
+    main_logger.debug(source_file_detail)
+    if "No such file or directory" in source_file_detail:
+        main_logger.info(source_file_detail)
+        exit()
+    else:
+        # source_file_detail_list = source_file_detail.split(" ")
+        # main_logger.debug("File size is " + source_file_detail_list[6])
+        # file_size = source_file_detail_list[6]
+        file_size = source_file_detail
+        source_md5_check = subprocess.check_output("md5sum /tmp/" + source_file + " | awk '{print $1}'", shell=True, stderr=subprocess.STDOUT).rstrip()
+        main_logger.debug(source_md5_check)
+        source_md5_checksum = source_md5_check
+        main_logger.debug("Source File Checksum : " + source_md5_checksum)
+    time.sleep(1)
     try:
         threads = []
         for i, rows in cpe_list.iterrows():
@@ -1051,7 +980,7 @@ def package_upload_to_devices():
 def DO_File_Transfer():
     global source_file, result_list
     time.sleep(1)
-    source_file = raw_input("Enter File name to transfer VersaDirector to Devices.(file should be in VD's path /home/" + vd_dict['ldap_user'] + "):\n")
+    source_file = raw_input("Enter File name to transfer Bastionhost to Devices.(file should be in BH /tmp folder):\n")
     global cpe_list, batch
     build_csv(get_device_list(oper_type="file_transfer"))
     raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
@@ -1072,9 +1001,10 @@ def DO_File_Transfer():
 
 
 def DO_Sec_patch_Upgrade():
-    global source_file, result_list
+    global source_file, result_list, oss_patch_version
     time.sleep(1)
-    source_file = raw_input("Enter File name to transfer VersaDirector to Devices.(file should be in VD's path /home/" + vd_dict['ldap_user'] + "):\n")
+    source_file = raw_input("Enter patch file name:\n")
+    oss_patch_version = raw_input("Enter oss patch version:\n")
     global cpe_list, batch
     build_csv(get_device_list())
     raw_input("Edit " + cpe_list_file_name +" & Press enter to continue")
@@ -1093,12 +1023,12 @@ def DO_Sec_patch_Upgrade():
 def DO_Sec_package_Upgrade():
     global source_file, result_list
     global cpe_list, batch
-    sec_pkg_vers_number = raw_input("\n\nEnter Security package version number:\n")
-    # sec_pkg_vers_number = "1640"
-    source_file = sec_pkg_vers_number
     build_csv(get_device_list_only_branch(oper_type="sec_package"))
     time.sleep(5)
     raw_input("Edit " + cpe_list_file_name + " and save and Press enter to continue")
+    sec_pkg_vers_number = raw_input("Enter Security package version number:\n")
+    # sec_pkg_vers_number = "1640"
+    source_file = sec_pkg_vers_number
     csv_data_read = pd.read_csv(cpe_list_file_name)
     batches = max(csv_data_read['batch'])
     start_batch = min(csv_data_read['batch'])

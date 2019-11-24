@@ -1,2 +1,0 @@
-device_name_in_vd,ip,day,batch,type,softwareVersion,ping-status,sync-status
-Manish-3260-UCPE,20.20.16.102,1,2,branch,16.1-R2-S2.2 d1653f6 20180508,REACHABLE,IN_SYNC

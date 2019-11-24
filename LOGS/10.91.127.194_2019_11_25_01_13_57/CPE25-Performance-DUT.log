@@ -1,0 +1,30 @@
+2019-11-25 01:14:21,256 - CPE25-Performance-DUT - DEBUG - [root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-25 01:14:21,658 - CPE25-Performance-DUT - DEBUG - mv /home/versa/packages/versa-security-p 
+ackage-* /opt/versa/etc/spack/downloads/
+mv: cannot stat '/home/versa/packages/versa-security-package-*': No such file or directory
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-25 01:14:22,059 - CPE25-Performance-DUT - DEBUG - chown versa:versa /opt/versa/etc/spack/d 
+ownloads/*
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-25 01:14:22,460 - CPE25-Performance-DUT - DEBUG - chmod 664 /opt/versa/etc/spack/downloads 
+/*
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-25 01:14:22,862 - CPE25-Performance-DUT - DEBUG - sed -i 's/premium/sample/g' /opt/versa/e 
+tc/spack/.flavor
+[root@CPE25-Performance-DUT: aaaadmin]# 
+2019-11-25 01:14:23,263 - CPE25-Performance-DUT - DEBUG - exit
+[smurugesan2@CPE25-Performance-DUT ~] # 
+2019-11-25 01:14:23,664 - CPE25-Performance-DUT - DEBUG - logout
+[ok][2019-11-24 19:38:27]
+2019-11-25 01:14:24,266 - CPE25-Performance-DUT - DEBUG - show security security-package information | tab
+         API                          UPDATE  
+VERSION  VERSION  FLAVOR  DATE        TYPE    
+----------------------------------------------
+1659     11       sample  2019-10-21  full    
+
+[ok][2019-11-24 19:38:27]
+smurugesan2@CPE25-Performance-DUT-cli> 
+2019-11-25 01:14:25,068 - CPE25-Performance-DUT - DEBUG - request security security-package install  version number 1659
+install-version-status [Additional Info: Started preparing installation of security package version 1659]
+[ok][2019-11-24 19:38:28]
+smurugesan2@CPE25-Performance-DUT-cli> 

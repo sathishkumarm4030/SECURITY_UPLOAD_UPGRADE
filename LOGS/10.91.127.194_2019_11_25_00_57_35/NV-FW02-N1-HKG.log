@@ -1,0 +1,26 @@
+2019-11-25 00:58:48,612 - NV-FW02-N1-HKG - DEBUG - ls -ltr /home/versa/packages/versa-flexvnf-ossp 
+ack-20190913.bin
+-rwxr-x--x+ 1 aaauser versa 156775958 Nov 24 10:58 [0m[01;32m/home/versa/packages/versa-flexvnf-osspack-20190913.bin[0m
+[smurugesan2@NV-FW02-N1-HKG ~] # 
+2019-11-25 00:58:48,613 - NV-FW02-N1-HKG - INFO - NV-FW02-N1-HKG file size: 156775958
+2019-11-25 00:58:51,218 - NV-FW02-N1-HKG - DEBUG - n
+f55121ff3e6f11492bfb2d712eed1ff9  /home/versa/packages/versa-flexvnf-osspack-20190913.bin
+[smurugesan2@NV-FW02-N1-HKG ~] # 
+2019-11-25 00:58:51,218 - NV-FW02-N1-HKG - DEBUG - NV-FW02-N1-HKG File Checksum : f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:58:52,821 - NV-FW02-N1-HKG - DEBUG - [root@NV-FW02-N1-HKG ~] # 
+2019-11-25 00:58:54,024 - NV-FW02-N1-HKG - DEBUG - Jan*1234: command not found
+[root@NV-FW02-N1-HKG ~] # 
+2019-11-25 00:58:54,425 - NV-FW02-N1-HKG - DEBUG - chmod a+x /home/versa/packages/versa-flexvnf-osspack-2 
+0190913.bin
+[root@NV-FW02-N1-HKG ~] # 
+2019-11-25 00:58:54,827 - NV-FW02-N1-HKG - DEBUG - exit
+[smurugesan2@NV-FW02-N1-HKG ~] # 
+2019-11-25 00:58:54,827 - NV-FW02-N1-HKG - DEBUG - Security pack execution Logfile : /tmp/packtrack_2019_11_25_00_57_35
+2019-11-25 00:58:54,828 - NV-FW02-N1-HKG - DEBUG - sudo /home/versa/packages/versa-flexvnf-osspack-20190913.bin > /tmp/packtrack_2019_11_25_00_57_35 2>&1 &
+2019-11-25 00:58:55,229 - NV-FW02-N1-HKG - DEBUG - &
+[1] 18364
+[smurugesan2@NV-FW02-N1-HKG ~] # 
+2019-11-25 00:59:00,635 - NV-FW02-N1-HKG - DEBUG - ..............18364[smurugesan2@NV-FW02-N1-HKG~]#..........
+2019-11-25 00:59:01,437 - NV-FW02-N1-HKG - DEBUG - cat /tmp/packtrack_2019_11_25_00_57_35
+Verifying archive integrity... All good.
+Uncompressing OSSPACK     0%     2%     5%     8%    10%    13%    16%    18%    21%    24%    26% [smurugesan2@NV-FW02-N1-HKG ~] # 

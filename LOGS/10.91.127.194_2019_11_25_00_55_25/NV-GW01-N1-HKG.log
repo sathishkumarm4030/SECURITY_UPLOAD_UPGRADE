@@ -1,0 +1,8 @@
+2019-11-25 00:57:01,817 - NV-GW01-N1-HKG - DEBUG - ls -ltr /home/versa/packages/versa-flexvnf-ossp 
+ack-20190913.bin
+ls: cannot access /home/versa/packages/versa-flexvnf-osspack-20190913.bin: No such file or directory
+[smurugesan2@NV-GW01-N1-HKG ~] # 
+2019-11-25 00:57:01,817 - NV-GW01-N1-HKG - INFO - NV-GW01-N1-HKG : ls -ltr /home/versa/packages/versa-flexvnf-ossp 
+ack-20190913.bin
+ls: cannot access /home/versa/packages/versa-flexvnf-osspack-20190913.bin: No such file or directory
+[smurugesan2@NV-GW01-N1-HKG ~] # 

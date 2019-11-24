@@ -1,0 +1,309 @@
+2019-11-25 00:51:51,038 - Main - INFO - SCRIPT Started
+2019-11-25 00:51:51,038 - Main - INFO - Result  File : /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_25_00_51_51//RESULT.csv
+2019-11-25 00:51:51,038 - Main - INFO - LOG FILES Path: /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_25_00_51_51/
+2019-11-25 00:52:20,944 - Main - INFO - total batches : 5
+2019-11-25 00:52:20,945 - Main - INFO - batch List : [1 2 3 4 5]
+2019-11-25 00:52:20,953 - Main - INFO - DAY :1
+2019-11-25 00:52:20,953 - Main - INFO - Batch : 1
+2019-11-25 00:52:20,954 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-11-25 00:52:20,955 - Main - INFO - CPE-14
+2019-11-25 00:52:20,955 - Main - INFO - CPE-34-HKG-PERF
+2019-11-25 00:52:20,955 - Main - INFO - CPE-50
+2019-11-25 00:52:20,956 - Main - INFO - CPE1-SIN-HYBRID
+2019-11-25 00:52:20,956 - Main - INFO - CPE10
+2019-11-25 00:52:20,956 - Main - INFO - CPE16-SIN-MPLSONLY
+2019-11-25 00:52:20,957 - Main - INFO - CPE19-IPC00172
+2019-11-25 00:52:20,957 - Main - INFO - CPE20
+2019-11-25 00:52:20,958 - Main - INFO - CPE22HKG-HYBRID
+2019-11-25 00:52:20,958 - Main - INFO - CPE25-Performance-DUT
+2019-11-25 00:52:23,972 - Main - DEBUG - 156775958
+2019-11-25 00:52:24,614 - Main - DEBUG - f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:24,615 - Main - DEBUG - Source File Checksum : f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:24,620 - Main - INFO - starting thread :Thread-1 For device CPE-14
+
+2019-11-25 00:52:24,621 - Main - INFO - starting thread :Thread-2 For device CPE-34-HKG-PERF
+
+2019-11-25 00:52:24,622 - Main - INFO - starting thread :Thread-3 For device CPE-50
+
+2019-11-25 00:52:24,623 - Main - INFO - starting thread :Thread-4 For device CPE1-SIN-HYBRID
+
+2019-11-25 00:52:24,624 - Main - INFO - starting thread :Thread-5 For device CPE10
+
+2019-11-25 00:52:24,625 - Main - INFO - starting thread :Thread-6 For device CPE16-SIN-MPLSONLY
+
+2019-11-25 00:52:24,626 - Main - INFO - Connection to device timed-out: linux 20.20.72.14:22
+2019-11-25 00:52:24,626 - Main - INFO - Connection to device timed-out: linux 20.20.72.50:22
+2019-11-25 00:52:24,627 - Main - INFO - starting thread :Thread-7 For device CPE19-IPC00172
+
+2019-11-25 00:52:24,628 - Main - INFO - starting thread :Thread-8 For device CPE20
+
+2019-11-25 00:52:24,629 - Main - INFO - starting thread :Thread-9 For device CPE22HKG-HYBRID
+
+2019-11-25 00:52:24,630 - Main - INFO - Connection to device timed-out: linux 20.20.72.1:22
+2019-11-25 00:52:24,630 - Main - INFO - Connection to device timed-out: linux 20.20.72.34:22
+2019-11-25 00:52:24,631 - Main - INFO - starting thread :Thread-10 For device CPE25-Performance-DUT
+
+2019-11-25 00:52:24,632 - Main - INFO - Connection to device timed-out: linux 20.20.72.16:22
+2019-11-25 00:52:24,634 - Main - INFO - Connection to device timed-out: linux 20.20.16.10:22
+2019-11-25 00:52:24,635 - Main - INFO - Connection to device timed-out: linux 20.20.16.20:22
+2019-11-25 00:52:24,635 - Main - INFO - Connection to device timed-out: linux 20.20.72.19:22
+2019-11-25 00:52:24,643 - Main - INFO - Connection to device timed-out: linux 20.20.72.22:22
+2019-11-25 00:52:28,863 - Main - DEBUG - Error: unable to start 
+2019-11-25 00:52:28,864 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-11-25 00:52:28,864 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-11-25 00:52:28,864 - Main - INFO - ['CPE10', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.16.10:22']
+2019-11-25 00:52:28,864 - Main - INFO - ['CPE1-SIN-HYBRID', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.1:22']
+2019-11-25 00:52:28,864 - Main - INFO - ['CPE25-Performance-DUT', 'versa-flexvnf-osspack-20190913.bin']
+2019-11-25 00:52:28,864 - Main - INFO - ['CPE-34-HKG-PERF', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.34:22']
+2019-11-25 00:52:28,865 - Main - INFO - ['CPE19-IPC00172', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.19:22']
+2019-11-25 00:52:28,865 - Main - INFO - ['CPE22HKG-HYBRID', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.22:22']
+2019-11-25 00:52:28,865 - Main - INFO - ['CPE-50', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.50:22']
+2019-11-25 00:52:28,865 - Main - INFO - ['CPE20', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.16.20:22']
+2019-11-25 00:52:28,865 - Main - INFO - ['CPE-14', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.14:22']
+2019-11-25 00:52:28,865 - Main - INFO - ['CPE16-SIN-MPLSONLY', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.16:22']
+2019-11-25 00:52:28,876 - Main - INFO - DAY :1
+2019-11-25 00:52:28,876 - Main - INFO - Batch : 2
+2019-11-25 00:52:28,876 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-11-25 00:52:28,877 - Main - INFO - CPE26-HKG2-DUAL-HYB-IPC00194
+2019-11-25 00:52:28,878 - Main - INFO - CPE27-HKG2-SINGLE-CPE-DUAL-INTERNET18
+2019-11-25 00:52:28,878 - Main - INFO - CPE3-BLR-HYBRID
+2019-11-25 00:52:28,878 - Main - INFO - CPE31-Performance-810
+2019-11-25 00:52:28,879 - Main - INFO - CPE34-HKG-DUAL-HYBRID-MPLS-PRIMARY
+2019-11-25 00:52:28,879 - Main - INFO - CPE34-SIN-DUAL-HYBRID-MPLS-PRIMARY
+2019-11-25 00:52:28,880 - Main - INFO - CPE35-HKG-DUAL-HYBRID-INT-SECONDARY
+2019-11-25 00:52:28,880 - Main - INFO - CPE35-SIN-DUAL-HYBRID-INT-SECONDARY
+2019-11-25 00:52:28,880 - Main - INFO - CPE35-SIN-PERF
+2019-11-25 00:52:28,881 - Main - INFO - CPE4-SIN-HYBRID
+2019-11-25 00:52:28,881 - Main - INFO - CPE45-VoIP
+2019-11-25 00:52:31,896 - Main - DEBUG - 156775958
+2019-11-25 00:52:32,434 - Main - DEBUG - f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:32,434 - Main - DEBUG - Source File Checksum : f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:32,443 - Main - INFO - starting thread :Thread-13 For device CPE26-HKG2-DUAL-HYB-IPC00194
+
+2019-11-25 00:52:32,444 - Main - INFO - starting thread :Thread-14 For device CPE27-HKG2-SINGLE-CPE-DUAL-INTERNET18
+
+2019-11-25 00:52:32,445 - Main - INFO - starting thread :Thread-15 For device CPE3-BLR-HYBRID
+
+2019-11-25 00:52:32,446 - Main - INFO - starting thread :Thread-16 For device CPE31-Performance-810
+
+2019-11-25 00:52:32,447 - Main - INFO - starting thread :Thread-17 For device CPE34-HKG-DUAL-HYBRID-MPLS-PRIMARY
+
+2019-11-25 00:52:32,447 - Main - INFO - starting thread :Thread-18 For device CPE34-SIN-DUAL-HYBRID-MPLS-PRIMARY
+
+2019-11-25 00:52:32,448 - Main - INFO - starting thread :Thread-19 For device CPE35-HKG-DUAL-HYBRID-INT-SECONDARY
+
+2019-11-25 00:52:32,448 - Main - INFO - starting thread :Thread-20 For device CPE35-SIN-DUAL-HYBRID-INT-SECONDARY
+
+2019-11-25 00:52:32,449 - Main - INFO - starting thread :Thread-21 For device CPE35-SIN-PERF
+
+2019-11-25 00:52:32,449 - Main - INFO - starting thread :Thread-22 For device CPE4-SIN-HYBRID
+
+2019-11-25 00:52:32,450 - Main - INFO - starting thread :Thread-23 For device CPE45-VoIP
+
+2019-11-25 00:52:32,451 - Main - INFO - Connection to device timed-out: linux 20.20.16.3:22
+2019-11-25 00:52:32,453 - Main - INFO - Connection to device timed-out: linux 20.20.90.27:22
+2019-11-25 00:52:32,455 - Main - INFO - Connection to device timed-out: linux 20.20.94.26:22
+2019-11-25 00:52:32,467 - Main - INFO - Connection to device timed-out: linux 20.20.72.35:22
+2019-11-25 00:52:32,467 - Main - INFO - Connection to device timed-out: linux 20.20.72.35:22
+2019-11-25 00:52:32,468 - Main - INFO - Connection to device timed-out: linux 20.20.72.35:22
+2019-11-25 00:52:32,468 - Main - INFO - Connection to device timed-out: linux 20.20.72.34:22
+2019-11-25 00:52:32,468 - Main - INFO - Connection to device timed-out: linux 20.20.72.4:22
+2019-11-25 00:52:32,468 - Main - INFO - Connection to device timed-out: linux 20.20.90.45:22
+2019-11-25 00:52:32,471 - Main - INFO - Connection to device timed-out: linux 20.20.90.31:22
+2019-11-25 00:52:32,474 - Main - INFO - Connection to device timed-out: linux 20.20.72.34:22
+2019-11-25 00:52:32,475 - Main - DEBUG - Error: unable to start 
+2019-11-25 00:52:32,475 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-11-25 00:52:32,475 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-11-25 00:52:32,475 - Main - INFO - ['CPE34-SIN-DUAL-HYBRID-MPLS-PRIMARY', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.34:22']
+2019-11-25 00:52:32,475 - Main - INFO - ['CPE26-HKG2-DUAL-HYB-IPC00194', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.94.26:22']
+2019-11-25 00:52:32,475 - Main - INFO - ['CPE4-SIN-HYBRID', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.4:22']
+2019-11-25 00:52:32,476 - Main - INFO - ['CPE3-BLR-HYBRID', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.16.3:22']
+2019-11-25 00:52:32,476 - Main - INFO - ['CPE35-SIN-DUAL-HYBRID-INT-SECONDARY', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.35:22']
+2019-11-25 00:52:32,476 - Main - INFO - ['CPE35-HKG-DUAL-HYBRID-INT-SECONDARY', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.35:22']
+2019-11-25 00:52:32,476 - Main - INFO - ['CPE45-VoIP', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.90.45:22']
+2019-11-25 00:52:32,476 - Main - INFO - ['CPE27-HKG2-SINGLE-CPE-DUAL-INTERNET18', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.90.27:22']
+2019-11-25 00:52:32,476 - Main - INFO - ['CPE34-HKG-DUAL-HYBRID-MPLS-PRIMARY', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.34:22']
+2019-11-25 00:52:32,476 - Main - INFO - ['CPE35-SIN-PERF', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.35:22']
+2019-11-25 00:52:32,477 - Main - INFO - ['CPE31-Performance-810', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.90.31:22']
+2019-11-25 00:52:32,486 - Main - INFO - DAY :1
+2019-11-25 00:52:32,487 - Main - INFO - Batch : 3
+2019-11-25 00:52:32,487 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-11-25 00:52:32,488 - Main - INFO - CPE5
+2019-11-25 00:52:32,488 - Main - INFO - CPE6
+2019-11-25 00:52:32,489 - Main - INFO - CPE9
+2019-11-25 00:52:32,489 - Main - INFO - NV-CGW11-N6-SIN
+2019-11-25 00:52:32,490 - Main - INFO - NV-CGW12-N6-SIN
+2019-11-25 00:52:32,490 - Main - INFO - NV-CGW21-N5-LON
+2019-11-25 00:52:32,490 - Main - INFO - NV-CGW22-N5-LON
+2019-11-25 00:52:32,491 - Main - INFO - NV-FW01-N1-HKG
+2019-11-25 00:52:32,491 - Main - INFO - NV-FW01-N6-SIN
+2019-11-25 00:52:32,491 - Main - INFO - NV-FW02-N1-HKG
+2019-11-25 00:52:32,492 - Main - INFO - NV-FW02-N6-SIN
+2019-11-25 00:52:35,506 - Main - DEBUG - 156775958
+2019-11-25 00:52:36,050 - Main - DEBUG - f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:36,051 - Main - DEBUG - Source File Checksum : f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:36,056 - Main - INFO - starting thread :Thread-24 For device CPE5
+
+2019-11-25 00:52:36,057 - Main - INFO - starting thread :Thread-25 For device CPE6
+
+2019-11-25 00:52:36,059 - Main - INFO - starting thread :Thread-26 For device CPE9
+
+2019-11-25 00:52:36,059 - Main - INFO - starting thread :Thread-27 For device NV-CGW11-N6-SIN
+
+2019-11-25 00:52:36,060 - Main - INFO - starting thread :Thread-28 For device NV-CGW12-N6-SIN
+
+2019-11-25 00:52:36,061 - Main - INFO - starting thread :Thread-29 For device NV-CGW21-N5-LON
+
+2019-11-25 00:52:36,062 - Main - INFO - Connection to device timed-out: linux 20.20.16.5:22
+2019-11-25 00:52:36,066 - Main - INFO - starting thread :Thread-30 For device NV-CGW22-N5-LON
+
+2019-11-25 00:52:36,067 - Main - INFO - Connection to device timed-out: linux 20.20.16.9:22
+2019-11-25 00:52:36,067 - Main - INFO - Connection to device timed-out: linux 20.20.16.6:22
+2019-11-25 00:52:36,072 - Main - INFO - starting thread :Thread-31 For device NV-FW01-N1-HKG
+
+2019-11-25 00:52:36,078 - Main - INFO - starting thread :Thread-32 For device NV-FW01-N6-SIN
+
+2019-11-25 00:52:36,080 - Main - INFO - starting thread :Thread-33 For device NV-FW02-N1-HKG
+
+2019-11-25 00:52:36,083 - Main - INFO - starting thread :Thread-34 For device NV-FW02-N6-SIN
+
+2019-11-25 00:52:38,732 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.138:22
+Authentication failed.
+2019-11-25 00:52:38,913 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.139:22
+Authentication failed.
+2019-11-25 00:52:38,945 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.130:22
+Authentication failed.
+2019-11-25 00:52:38,979 - Main - INFO - Authentication failure: unable to connect linux 10.63.46.131:22
+Authentication failed.
+2019-11-25 00:52:39,810 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.165:22
+Authentication failed.
+2019-11-25 00:52:48,929 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.167:22
+Authentication failed.
+2019-11-25 00:52:48,930 - Main - DEBUG - Error: unable to start 
+2019-11-25 00:52:48,930 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-11-25 00:52:48,930 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-11-25 00:52:48,930 - Main - INFO - ['NV-FW02-N6-SIN', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.63.46.131:22\nAuthentication failed.']
+2019-11-25 00:52:48,930 - Main - INFO - ['NV-FW01-N6-SIN', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.130:22\nAuthentication failed.']
+2019-11-25 00:52:48,930 - Main - INFO - ['NV-FW01-N1-HKG', 'versa-flexvnf-osspack-20190913.bin']
+2019-11-25 00:52:48,931 - Main - INFO - ['NV-CGW22-N5-LON', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.167:22\nAuthentication failed.']
+2019-11-25 00:52:48,931 - Main - INFO - ['NV-CGW12-N6-SIN', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.139:22\nAuthentication failed.']
+2019-11-25 00:52:48,931 - Main - INFO - ['NV-FW02-N1-HKG', 'versa-flexvnf-osspack-20190913.bin']
+2019-11-25 00:52:48,931 - Main - INFO - ['CPE9', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.16.9:22']
+2019-11-25 00:52:48,931 - Main - INFO - ['CPE6', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.16.6:22']
+2019-11-25 00:52:48,931 - Main - INFO - ['NV-CGW21-N5-LON', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.165:22\nAuthentication failed.']
+2019-11-25 00:52:48,931 - Main - INFO - ['CPE5', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.16.5:22']
+2019-11-25 00:52:48,932 - Main - INFO - ['NV-CGW11-N6-SIN', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.138:22\nAuthentication failed.']
+2019-11-25 00:52:48,943 - Main - INFO - DAY :1
+2019-11-25 00:52:48,943 - Main - INFO - Batch : 4
+2019-11-25 00:52:48,943 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-11-25 00:52:48,944 - Main - INFO - NV-GW-BR-LON
+2019-11-25 00:52:48,945 - Main - INFO - NV-GW01-N1-HKG
+2019-11-25 00:52:48,945 - Main - INFO - NV-GW01-N5-LON
+2019-11-25 00:52:48,945 - Main - INFO - NV-GW01-N6-SIN
+2019-11-25 00:52:48,946 - Main - INFO - NV-GW02-N1-HKG
+2019-11-25 00:52:48,946 - Main - INFO - NV-GW02-N5-LON
+2019-11-25 00:52:48,947 - Main - INFO - NV-GW02-N6-SIN
+2019-11-25 00:52:48,947 - Main - INFO - NV-WC01-N1-HKG
+2019-11-25 00:52:48,948 - Main - INFO - NV-WC01-N5-LON
+2019-11-25 00:52:48,948 - Main - INFO - NV-WC01-N6-SIN
+2019-11-25 00:52:48,948 - Main - INFO - NV-WC02-N1-HKG
+2019-11-25 00:52:51,964 - Main - DEBUG - 156775958
+2019-11-25 00:52:52,525 - Main - DEBUG - f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:52,525 - Main - DEBUG - Source File Checksum : f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:52:52,531 - Main - INFO - starting thread :Thread-51 For device NV-GW-BR-LON
+
+2019-11-25 00:52:52,532 - Main - INFO - starting thread :Thread-52 For device NV-GW01-N1-HKG
+
+2019-11-25 00:52:52,533 - Main - INFO - starting thread :Thread-53 For device NV-GW01-N5-LON
+
+2019-11-25 00:52:52,536 - Main - INFO - starting thread :Thread-54 For device NV-GW01-N6-SIN
+
+2019-11-25 00:52:52,538 - Main - INFO - starting thread :Thread-55 For device NV-GW02-N1-HKG
+
+2019-11-25 00:52:52,543 - Main - INFO - starting thread :Thread-56 For device NV-GW02-N5-LON
+
+2019-11-25 00:52:52,547 - Main - INFO - starting thread :Thread-57 For device NV-GW02-N6-SIN
+
+2019-11-25 00:52:52,549 - Main - INFO - starting thread :Thread-58 For device NV-WC01-N1-HKG
+
+2019-11-25 00:52:52,553 - Main - INFO - starting thread :Thread-59 For device NV-WC01-N5-LON
+
+2019-11-25 00:52:52,558 - Main - INFO - starting thread :Thread-60 For device NV-WC01-N6-SIN
+
+2019-11-25 00:52:52,560 - Main - INFO - starting thread :Thread-61 For device NV-WC02-N1-HKG
+
+2019-11-25 00:52:55,990 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.140:22
+Authentication failed.
+2019-11-25 00:52:56,455 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.61:22
+Authentication failed.
+2019-11-25 00:52:56,550 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.60:22
+Authentication failed.
+2019-11-25 00:52:56,558 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.133:22
+Authentication failed.
+2019-11-25 00:52:56,559 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.135:22
+Authentication failed.
+2019-11-25 00:52:56,560 - Main - INFO - Authentication failure: unable to connect linux 10.63.46.133:22
+Authentication failed.
+2019-11-25 00:52:56,562 - Main - INFO - Authentication failure: unable to connect linux 10.83.44.35:22
+Authentication failed.
+2019-11-25 00:52:56,865 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.57:22
+Authentication failed.
+2019-11-25 00:52:57,828 - Main - DEBUG - Error: unable to start 
+2019-11-25 00:52:57,828 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-11-25 00:52:57,828 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-11-25 00:52:57,829 - Main - INFO - ['NV-GW-BR-LON', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.140:22\nAuthentication failed.']
+2019-11-25 00:52:57,829 - Main - INFO - ['NV-WC01-N5-LON', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.57:22\nAuthentication failed.']
+2019-11-25 00:52:57,829 - Main - INFO - ['NV-GW02-N5-LON', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.60:22\nAuthentication failed.']
+2019-11-25 00:52:57,829 - Main - INFO - ['NV-WC01-N6-SIN', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.133:22\nAuthentication failed.']
+2019-11-25 00:52:57,829 - Main - INFO - ['NV-GW01-N1-HKG', 'versa-flexvnf-osspack-20190913.bin']
+2019-11-25 00:52:57,830 - Main - INFO - ['NV-GW01-N6-SIN', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.135:22\nAuthentication failed.']
+2019-11-25 00:52:57,830 - Main - INFO - ['NV-GW02-N6-SIN', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.63.46.133:22\nAuthentication failed.']
+2019-11-25 00:52:57,830 - Main - INFO - ['NV-WC02-N1-HKG', 'versa-flexvnf-osspack-20190913.bin']
+2019-11-25 00:52:57,830 - Main - INFO - ['NV-GW01-N5-LON', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.61:22\nAuthentication failed.']
+2019-11-25 00:52:57,830 - Main - INFO - ['NV-WC01-N1-HKG', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.44.35:22\nAuthentication failed.']
+2019-11-25 00:52:57,830 - Main - INFO - ['NV-GW02-N1-HKG', 'versa-flexvnf-osspack-20190913.bin']
+2019-11-25 00:52:57,842 - Main - INFO - DAY :1
+2019-11-25 00:52:57,843 - Main - INFO - Batch : 5
+2019-11-25 00:52:57,843 - Main - INFO - BELOW ARE THE CPEs going for Upgrade:
+2019-11-25 00:52:57,844 - Main - INFO - NV-WC02-N5-LON
+2019-11-25 00:52:57,844 - Main - INFO - NV-WC02-N6-SIN
+2019-11-25 00:52:57,845 - Main - INFO - UCPE1
+2019-11-25 00:52:57,845 - Main - INFO - UCPE10
+2019-11-25 00:52:57,846 - Main - INFO - UCPE3
+2019-11-25 00:52:57,846 - Main - INFO - UCPE7
+2019-11-25 00:53:00,862 - Main - DEBUG - 156775958
+2019-11-25 00:53:01,414 - Main - DEBUG - f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:53:01,415 - Main - DEBUG - Source File Checksum : f55121ff3e6f11492bfb2d712eed1ff9
+2019-11-25 00:53:01,418 - Main - INFO - starting thread :Thread-84 For device NV-WC02-N5-LON
+
+2019-11-25 00:53:01,418 - Main - INFO - starting thread :Thread-85 For device NV-WC02-N6-SIN
+
+2019-11-25 00:53:01,418 - Main - INFO - starting thread :Thread-86 For device UCPE1
+
+2019-11-25 00:53:01,419 - Main - INFO - starting thread :Thread-87 For device UCPE10
+
+2019-11-25 00:53:01,419 - Main - INFO - starting thread :Thread-88 For device UCPE3
+
+2019-11-25 00:53:01,420 - Main - INFO - starting thread :Thread-89 For device UCPE7
+
+2019-11-25 00:53:01,426 - Main - INFO - Connection to device timed-out: linux 20.20.72.151:22
+2019-11-25 00:53:01,427 - Main - INFO - Connection to device timed-out: linux 20.20.72.153:22
+2019-11-25 00:53:01,429 - Main - INFO - Connection to device timed-out: linux 20.20.72.160:22
+2019-11-25 00:53:01,430 - Main - INFO - Connection to device timed-out: linux 20.20.72.157:22
+2019-11-25 00:53:03,478 - Main - INFO - Authentication failure: unable to connect linux 10.83.46.56:22
+Authentication failed.
+2019-11-25 00:53:03,478 - Main - DEBUG - Error: unable to start 
+2019-11-25 00:53:03,479 - Main - INFO - <<<<<Security patch execution RESULT>>>
+2019-11-25 00:53:03,479 - Main - INFO - 'cpe', 'filename', 'patch_upgrade_status'
+2019-11-25 00:53:03,479 - Main - INFO - ['UCPE10', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.160:22']
+2019-11-25 00:53:03,479 - Main - INFO - ['NV-WC02-N6-SIN', 'versa-flexvnf-osspack-20190913.bin']
+2019-11-25 00:53:03,479 - Main - INFO - ['UCPE3', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.153:22']
+2019-11-25 00:53:03,479 - Main - INFO - ['UCPE1', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.151:22']
+2019-11-25 00:53:03,480 - Main - INFO - ['NV-WC02-N5-LON', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Authentication failure: unable to connect linux 10.83.46.56:22\nAuthentication failed.']
+2019-11-25 00:53:03,480 - Main - INFO - ['UCPE7', 'versa-flexvnf-osspack-20190913.bin', 'CONN_ERR: Connection to device timed-out: linux 20.20.72.157:22']
+2019-11-25 00:53:03,481 - Main - INFO - Time elapsed: 0:01:12.442714
+
+2019-11-25 00:53:03,481 - Main - INFO - Result Stored in /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_25_00_51_51//RESULT.csv
+2019-11-25 00:53:03,481 - Main - INFO - LOG FILES Path: /home/sathish123/PycharmProjects/SECURITY_UPLOAD_UPGRADE/LOGS/10.91.127.194_2019_11_25_00_51_51/
+2019-11-25 00:53:03,826 - Main - INFO - Authentication failure: unable to connect linux 10.63.46.132:22
+Authentication failed.

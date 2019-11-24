@@ -1,2 +1,0 @@
-device_name_in_vd,ip,day,batch,org,type,softwareVersion,ping-status,sync-status,serialNo,model,existing-packageName
-CPE25-Performance-DUT,20.20.90.25,1,1,IPC00190,branch,16.1-R2-S9 80561de 20190628,REACHABLE,IN_SYNC,CPE53KSA,FWA-3260,versa-flexvnf-20190628-153900-80561de-16.1R2S9

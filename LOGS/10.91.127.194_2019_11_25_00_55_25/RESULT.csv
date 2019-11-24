@@ -1,0 +1,69 @@
+cpe,filename,sec_patch_execuiton
+CPE10,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.16.10:22
+CPE1-SIN-HYBRID,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.1:22
+CPE25-Performance-DUT,versa-flexvnf-osspack-20190913.bin,versa-flexvnf-osspack-20190913.bin Patch execuiton failed. Error Found in exec Log
+CPE-34-HKG-PERF,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.34:22
+CPE19-IPC00172,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.19:22
+CPE22HKG-HYBRID,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.22:22
+CPE-50,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.50:22
+CPE20,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.16.20:22
+CPE-14,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.14:22
+CPE16-SIN-MPLSONLY,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.16:22
+CPE34-SIN-DUAL-HYBRID-MPLS-PRIMARY,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.34:22
+CPE26-HKG2-DUAL-HYB-IPC00194,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.94.26:22
+CPE4-SIN-HYBRID,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.4:22
+CPE3-BLR-HYBRID,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.16.3:22
+CPE35-SIN-DUAL-HYBRID-INT-SECONDARY,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.35:22
+CPE35-HKG-DUAL-HYBRID-INT-SECONDARY,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.35:22
+CPE45-VoIP,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.90.45:22
+CPE27-HKG2-SINGLE-CPE-DUAL-INTERNET18,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.90.27:22
+CPE34-HKG-DUAL-HYBRID-MPLS-PRIMARY,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.34:22
+CPE35-SIN-PERF,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.35:22
+CPE31-Performance-810,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.90.31:22
+NV-FW02-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.63.46.131:22
+Authentication failed."
+NV-FW01-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.130:22
+Authentication failed."
+NV-FW01-N1-HKG,versa-flexvnf-osspack-20190913.bin,versa-flexvnf-osspack-20190913.bin Patch execuiton success. Version not found in show security oss pack info | tab
+NV-CGW22-N5-LON,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.167:22
+Authentication failed."
+NV-CGW12-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.139:22
+Authentication failed."
+NV-FW02-N1-HKG,versa-flexvnf-osspack-20190913.bin,versa-flexvnf-osspack-20190913.bin Patch execuiton success. Version not found in show security oss pack info | tab
+CPE9,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.16.9:22
+CPE6,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.16.6:22
+NV-CGW21-N5-LON,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.165:22
+Authentication failed."
+CPE5,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.16.5:22
+NV-CGW11-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.138:22
+Authentication failed."
+NV-GW-BR-LON,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.140:22
+Authentication failed."
+NV-WC01-N5-LON,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.57:22
+Authentication failed."
+NV-GW02-N5-LON,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.60:22
+Authentication failed."
+NV-WC01-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.133:22
+Authentication failed."
+NV-GW01-N1-HKG,versa-flexvnf-osspack-20190913.bin,"ls -ltr /home/versa/packages/versa-flexvnf-ossp 
+ack-20190913.bin
+ls: cannot access /home/versa/packages/versa-flexvnf-osspack-20190913.bin: No such file or directory
+[smurugesan2@NV-GW01-N1-HKG ~] # "
+NV-GW01-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.135:22
+Authentication failed."
+NV-GW02-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.63.46.133:22
+Authentication failed."
+NV-WC02-N1-HKG,versa-flexvnf-osspack-20190913.bin,versa-flexvnf-osspack-20190913.bin Patch execuiton success. Version not found in show security oss pack info | tab
+NV-GW01-N5-LON,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.61:22
+Authentication failed."
+NV-WC01-N1-HKG,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.44.35:22
+Authentication failed."
+NV-GW02-N1-HKG,versa-flexvnf-osspack-20190913.bin,versa-flexvnf-osspack-20190913.bin Patch execuiton success. Version not found in show security oss pack info | tab
+UCPE10,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.160:22
+NV-WC02-N6-SIN,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.63.46.132:22
+Authentication failed."
+UCPE3,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.153:22
+UCPE1,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.151:22
+NV-WC02-N5-LON,versa-flexvnf-osspack-20190913.bin,"CONN_ERR: Authentication failure: unable to connect versa 10.83.46.56:22
+Authentication failed."
+UCPE7,versa-flexvnf-osspack-20190913.bin,CONN_ERR: Connection to device timed-out: versa 20.20.72.157:22
