@@ -647,10 +647,12 @@ def sec_pkg_execute(netconnect, cpe_name, cpe_user, cpe_passwd, filename, cpe_lo
     if 'error:' in bin_process or 'Error' in bin_process:
         return filename + " Patch execuiton failed. Error Found in exec Log"
     else:
+        time.sleep(5)
         netconnect.send_command_expect("exit", strip_prompt=False,
                                                      strip_command=False, expect_string=">")
         result = netconnect.send_command_expect("show security osspack info | tab", strip_prompt=False,
                                                      strip_command=False, expect_string=">")
+        cpe_logger.debug(result)
         if oss_patch_version in result:
             return filename + " Patch Execution success"
         else:
