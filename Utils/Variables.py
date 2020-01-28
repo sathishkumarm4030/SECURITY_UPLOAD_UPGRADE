@@ -36,20 +36,20 @@ def read_csv_file(filename, day, batch):
 
 def get_vd_details():
     global cpe_list
-    ip = raw_input("Enter Versa Director IP address:\n")
+    ip = raw_input("Enter Versa Director IP address[10.5.20.3]:\n")
     print "Versa director IP:" + ip
-    ldap_user = raw_input("Enter LDAP Username for making SSH connection to VD:\n")
+    ldap_user = raw_input("Enter TACACS Username for making SSH connection to VD:\n")
     print "Versa director Username:" + ldap_user
-    ldap_passwd = getpass.getpass("Enter LDAP Password:\n")
-    user = raw_input("Enter Username for making REST actions to Versa Director :\n")
+    ldap_passwd = getpass.getpass("Enter TACACS Password:\n")
+    user = raw_input("Enter Username for making REST actions to Versa Director [TACACS@System]:\n")
     print "Versa director Username:" + user
-    passwd = getpass.getpass("Enter REST Password:\n")
-    cpe_user = raw_input("Enter Versa CPE Username:\n")
+    passwd = getpass.getpass("Enter TACACS Password:\n")
+    cpe_user = raw_input("Enter Versa CPE Username [TACACS]:\n")
     print "Versa CPE Username:" + cpe_user
-    cpe_passwd = getpass.getpass("Enter Versa CPE Password:\n")
-    node_user = raw_input("Enter Versa NODE devices Username:\n")
+    cpe_passwd = getpass.getpass("Enter Versa CPE Password [TACACS]:\n")
+    node_user = raw_input("Enter Versa NODE devices Username [TACACS]:\n")
     print "Versa NODE devices Username:" + node_user
-    node_passwd = getpass.getpass("Enter Versa NODE Password:\n")
+    node_passwd = getpass.getpass("Enter Versa NODE Password [TACACS]:\n")
     # ip = '10.91.127.194'
     # ldap_user = 'smurugesan2'
     # ldap_passwd = 'Jan*1234'

@@ -553,12 +553,13 @@ def file_upload(source_file, dest_name, dest_ip, dev_user, dev_passwd, index_pas
         return
     try:
         cmd = "rsync -v -e 'sshpass -p " + dev_passwd + " ssh -o StrictHostKeyChecking=no' /tmp/" + source_file + " " + dev_user + "@" + dest_ip + ":/home/versa/packages --progress"
-        main_logger.debug("CMD>> : " + cmd)
+        main_logger.debug("CMD>> : " + cmd.replace(dev_passwd, "XXXXXX"))
         output1 = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
-        main_logger.debug(output1)
+        main_logger.debug(output1.replace(dev_passwd, "XXXXXX"))
     except subprocess.CalledProcessError as cperr:
-        main_logger.debug(cperr)
-        result = "CalledProcessError: "+ str(cperr)
+        cperror = str(cperr).replace(dev_passwd, "XXXXXX")
+        main_logger.debug(cperror)
+        result = "CalledProcessError: "+ cperror
         device_report[dest_name] = [dest_name, source_file, result]
         return
     if 'speedup is' in output1:
