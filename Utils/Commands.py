@@ -339,7 +339,11 @@ def get_device_list(oper_type='patch_upgrade'):
             device_list.append(batch)
             device_list.append(i['ownerOrg'])
             device_list.append(i['type'])
-            device_list.append(i['softwareVersion'])
+            if 'softwareVersion' in i:
+                device_list.append(i['softwareVersion'])
+            else:
+                i['softwareVersion'] = "NULL"
+                device_list.append(i['softwareVersion'])
             device_list.append(i['ping-status'])
             device_list.append(i['sync-status'])
             try:
